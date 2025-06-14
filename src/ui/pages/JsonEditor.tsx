@@ -59,12 +59,10 @@ const JsonEditor: FC<JsonEditorProps> = ({ step, onContinue, projectData }) => {
             }
             // Only add nodeId if it exists (currently has an error)
             if (nodeId) {
-              // params.nodeId = nodeId;
+              params.nodeId = nodeId;
             }
-            console.log(params);
             response = await axios.get('https://moadelezz2-des2ract.hf.space/api/tree-builder', { params });
         } else if (step === 2) {
-          console.log(projectData.json1.data);
             response = await axios.post(
             'https://AOZ2025-Semantic-Assigner.hf.space/predict',
             projectData.json1.data,

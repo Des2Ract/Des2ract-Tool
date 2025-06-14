@@ -1,23 +1,37 @@
-import { FC, useState } from 'react';
+import { FC, useState,useEffect } from 'react';
 import Dashboard from './pages/Dashboard';
 import AddProject from './pages/AddProject';
 import JsonEditor from './pages/JsonEditor';
 import ProjectView from './pages/ProjectView';
 import axios from 'axios';
 
-interface Project {
-  id: string;
-  name: string;
-  figmaLink: string;
-  files: { [key: string]: string };
-}
+const formatFigmaName = (url:string) => {
+  if (!url) return "Untitled Project";
+
+  try {
+    // Use the URL API to safely parse the link
+    const path = new URL(url).pathname;
+
+    // Split the path and get the last part, which is the file name
+    const fileName = path.substring(path.lastIndexOf('/') + 1);
+
+    // Decode characters like '%20', replace dashes, and return
+    return decodeURIComponent(fileName).replace(/-/g, ' ');
+
+  } catch (error) {
+    // If the URL is invalid, return a fallback
+    console.error("Invalid URL for Figma link:", url);
+    return "Untitled Project";
+  }
+};
 
 const App: FC = () => {
-  const [currentView, setCurrentView] = useState<'dashboard' | 'addProject' | 'jsonEditor1' | 'jsonEditor2' | 'jsonEditor3' | 'projectView'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'addProject' | 'TreeBuilder' | 'SemanticAssigner' | 'SemanticGrouper' | 'projectView'>('dashboard');
   const [projects, setProjects] = useState<Project[]>([]);
   const [projectData, setProjectData] = useState<{ figmaLink?: string; json1?: any; json2?: any; json3?: any; files?: { [key: string]: string } }>({});
   const [currentFiles, setCurrentFiles] = useState<{ [key: string]: string }>({});
   const [currentActiveFile, setCurrentActiveFile] = useState<string | null>(null);
+  const [currentProjectId, setCurrentProjectId] = useState<string | null>(null);
 
   const handleAddProject = () => {
     setCurrentView('addProject');
@@ -27,47 +41,71 @@ const App: FC = () => {
   const handleProjectSelect = (projectId: string) => {
     const project = projects.find(p => p.id === projectId);
     if (project) {
+      setCurrentProjectId(project.id);
       setCurrentFiles(project.files);
       setCurrentActiveFile(Object.keys(project.files)[0] || null);
       setCurrentView('projectView');
     }
   };
 
+  const handleReturnSelect = () => {
+      setCurrentView('dashboard');
+  };
+
   const handleContinueFromAddProject = (figmaLink: string) => {
     setProjectData({ figmaLink });
-    setCurrentView('jsonEditor1');
+    setCurrentView('TreeBuilder');
   };
 
-  const handleContinueFromJsonEditor1 = async (json1: any) => {
+  const handleContinueFromTreeBuilder = async (json1: any) => {
     setProjectData(prev => ({ ...prev, json1 }));
-    setCurrentView('jsonEditor2');
+    setCurrentView('SemanticAssigner');
   };
 
-  const handleContinueFromJsonEditor2 = async (json2: any) => {
+  const handleContinueFromSemanticAssigner = async (json2: any) => {
     setProjectData(prev => ({ ...prev, json2 }));
-    setCurrentView('jsonEditor3');
+    setCurrentView('SemanticGrouper');
   };
 
-  const handleContinueFromJsonEditor3 = async (json3: any) => {
+  useEffect(() => {
+  const loadProjects = async () => {
+    const projects = await window.electron.getProjects();
+    setProjects(projects);
+  };
+  loadProjects();
+}, []);
+
+  const handleContinueFromSemanticGrouper = async (json3: any) => {
     try {
-      // const response = await axios.post('/api/finalStep', { json3 });
-      // const files = response.data.files; // Assuming API returns { files: { [key: string]: string } }
-      // Mocking API response for final files
-      const files = {
-        'index.html': '<html><body><h1>Mock Project</h1></body></html>',
-        'style.css': 'body { font-family: Arial; }',
-        'script.js': 'console.log("Mock project loaded");',
-      };
-      const newProject = {
-        id: `project-${Date.now()}`,
-        name: `Project from ${projectData.figmaLink}`,
+      // Call API to get zip file
+      const response = await axios.post('http://localhost:3000/download', { json3 }, {
+        responseType: 'arraybuffer'
+      });
+      
+      // Create project
+      const projectId = `project-${Date.now()}`;
+      const projectName = formatFigmaName(projectData.figmaLink as string);
+      
+      // Unzip the project
+      let path = await window.electron.unzipProject(projectId, response.data);
+      
+      // Save project metadata
+      const project : Project= {
+        id: projectId,
+        name: projectName,
+        files: {
+        },
         figmaLink: projectData.figmaLink || '',
-        files,
+        path: path
       };
-      setProjects(prev => [...prev, newProject]);
-      setCurrentFiles(files);
-      setCurrentActiveFile(Object.keys(files)[0] || null);
+      
+      await window.electron.saveProject(project, {});
+      
+      // Update state
+      setProjects(prev => [...prev, project]);
+      setCurrentProjectId(projectId);
       setCurrentView('projectView');
+      
     } catch (error) {
       console.error('Error getting final files:', error);
     }
@@ -81,21 +119,24 @@ const App: FC = () => {
       {currentView === 'addProject' && (
         <AddProject onContinue={handleContinueFromAddProject} />
       )}
-      {currentView === 'jsonEditor1' && (
-        <JsonEditor step={1} onContinue={handleContinueFromJsonEditor1} projectData={projectData} />
+      {currentView === 'TreeBuilder' && (
+        <JsonEditor step={1} onContinue={handleContinueFromTreeBuilder} projectData={projectData} />
       )}
-      {currentView === 'jsonEditor2' && (
-        <JsonEditor step={2} onContinue={handleContinueFromJsonEditor2} projectData={projectData} />
+      {currentView === 'SemanticAssigner' && (
+        <JsonEditor step={2} onContinue={handleContinueFromSemanticAssigner} projectData={projectData} />
       )}
-      {currentView === 'jsonEditor3' && (
-        <JsonEditor step={3} onContinue={handleContinueFromJsonEditor3} projectData={projectData} />
+      {currentView === 'SemanticGrouper' && (
+        <JsonEditor step={3} onContinue={handleContinueFromSemanticGrouper} projectData={projectData} />
       )}
       {currentView === 'projectView' && (
         <ProjectView
+          projects={projects}
+          currentProjectId={currentProjectId || ''}
           files={currentFiles}
           activeFile={currentActiveFile}
           setActiveFile={setCurrentActiveFile}
           setFiles={setCurrentFiles}
+          onReturnSelect={handleReturnSelect}
         />
       )}
     </>

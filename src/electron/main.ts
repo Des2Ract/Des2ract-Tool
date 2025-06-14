@@ -1,6 +1,7 @@
 import { app, BrowserWindow } from "electron";
 import { isDev } from "./util.js";
 import { getPreloadPath, getUIPath } from "./pathResolver.js";
+import { initProjectManager } from "./projectManager.js";
 
 process.env["ELECTRON_DISABLE_SECURITY_WARNINGS"] = "true";
 
@@ -15,6 +16,8 @@ app.on("ready", () => {
       webSecurity: false,
     },
   });
+
+  initProjectManager(mainWindow);
 
   if (isDev()) {
     mainWindow.loadURL("http://localhost:5123");

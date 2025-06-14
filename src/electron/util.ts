@@ -1,44 +1,40 @@
-import { ipcMain, WebContents, WebFrameMain } from 'electron';
-import { getUIPath } from './pathResolver.js';
-import { pathToFileURL } from 'url';
+import { ipcMain, BrowserWindow } from "electron";
+import { getUIPath } from "./pathResolver.js";
+import { pathToFileURL } from "url";
+import { IpcMainEvent } from "electron";
 
 export function isDev(): boolean {
-  return process.env.NODE_ENV === 'development';
+  return process.env.NODE_ENV === "development";
 }
 
-export function ipcMainHandle<Key extends keyof EventPayloadMapping>(
+// Add new interfaces
+export interface Project {
+  id: string;
+  name: string;
+  figmaLink: string;
+  path: string; // Path to project folder
+}
+
+// Add these functions to existing util.ts
+export function sendToWindow<Key extends keyof EventPayloadMapping>(
   key: Key,
-  handler: () => EventPayloadMapping[Key]
+  window: BrowserWindow,
+  payload: EventPayloadMapping[Key]
 ) {
-  ipcMain.handle(key, (event) => {
-    validateEventFrame(event.senderFrame);
-    return handler();
-  });
+  window.webContents.send(key, payload);
+}
+
+export interface EventPayloadMapping {
+  "get-projects": Project[];
+  "save-project": { project: Project; files: { [key: string]: string } };
+  "run-project": { projectId: string; command: string };
+  "stop-project": string;
+  "project-output": { projectId: string; data: string };
 }
 
 export function ipcMainOn<Key extends keyof EventPayloadMapping>(
   key: Key,
-  handler: (payload: EventPayloadMapping[Key]) => void
+  handler: (event: IpcMainEvent, payload: EventPayloadMapping[Key]) => void
 ) {
-  ipcMain.on(key, (event, payload) => {
-    validateEventFrame(event.senderFrame);
-    return handler(payload);
-  });
-}
-
-export function ipcWebContentsSend<Key extends keyof EventPayloadMapping>(
-  key: Key,
-  webContents: WebContents,
-  payload: EventPayloadMapping[Key]
-) {
-  webContents.send(key, payload);
-}
-
-export function validateEventFrame(frame: WebFrameMain) {
-  if (isDev() && new URL(frame.url).host === 'localhost:5123') {
-    return;
-  }
-  if (frame.url !== pathToFileURL(getUIPath()).toString()) {
-    throw new Error('Malicious event');
-  }
+  ipcMain.on(key, handler);
 }

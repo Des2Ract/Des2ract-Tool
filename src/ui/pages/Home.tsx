@@ -107,6 +107,8 @@ const Home: FC = () => {
           <ResultsContainer>
             {Object.keys(files).length > 0 || figmaLink ? (
               <TabSwitcher
+                projects={[]}
+                projectId={''}
                 figmaLink={figmaLink}
                 files={files}
                 activeFile={activeFile}

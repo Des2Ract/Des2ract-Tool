@@ -9,6 +9,8 @@ import Editor from './Editor';
 import { Palette, Code, Devices } from '@mui/icons-material';
 
 interface TabSwitcherProps {
+  projects: Project[];
+  projectId: string;
   figmaLink: string;
   files: { [key: string]: string };
   activeFile: string | null;
@@ -58,7 +60,7 @@ const TabPanel = styled(Box)(({ theme }) => ({
   overflow: 'auto',
 }));
 
-const TabSwitcher: FC<TabSwitcherProps> = ({ figmaLink, files, activeFile, setActiveFile, setFiles }) => {
+const TabSwitcher: FC<TabSwitcherProps> = ({ projects,projectId,figmaLink, files, activeFile, setActiveFile, setFiles }) => {
   const [tabValue, setTabValue] = useState<number>(0);
 
   const handleChange = (_event: SyntheticEvent, newValue: number) => {
@@ -87,7 +89,7 @@ const TabSwitcher: FC<TabSwitcherProps> = ({ figmaLink, files, activeFile, setAc
       )}
       {tabValue === 2 && (
         <TabPanel sx={{ p: 0, height: '100%' }}>
-          <Editor files={files} activeFile={activeFile} setActiveFile={setActiveFile} setFiles={setFiles} />
+          <Editor projects={projects} currentProjectId={projectId} files={files} activeFile={activeFile} setActiveFile={setActiveFile} setFiles={setFiles} />
         </TabPanel>
       )}
     </Box>

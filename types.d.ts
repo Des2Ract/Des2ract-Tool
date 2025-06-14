@@ -1,23 +1,25 @@
-type FrameWindowAction = "CLOSE" | "MAXIMIZE" | "MINIMIZE";
+declare const PROJECTS_DIR: string;
 
-type EventPayloadMapping = {
-  statistics: Statistics;
-  getStaticData: StaticData;
-  changeView: View;
-  sendFrameAction: FrameWindowAction;
-};
-
-type UnsubscribeFunction = () => void;
+interface Project {
+  id: string;
+  name: string;
+  figmaLink: string;
+  files: { [key: string]: string };
+  path?: string; // Path to project folder
+}
 
 interface Window {
   electron: {
-    subscribeStatistics: (
-      callback: (statistics: Statistics) => void
-    ) => UnsubscribeFunction;
-    getStaticData: () => Promise<StaticData>;
-    subscribeChangeView: (
-      callback: (view: View) => void
-    ) => UnsubscribeFunction;
-    sendFrameAction: (payload: FrameWindowAction) => void;
+    getProjects: () => Promise<Project[]>;
+    saveProject: (
+      project: Project,
+      files: Record<string, string | Buffer>
+    ) => Promise<Project>;
+    runProject: (projectId: string, command: string) => Promise<void>;
+    stopProject: (projectId: string) => Promise<boolean>;
+    unzipProject: (projectId: string, zipData: Buffer) => Promise<string>;
+    onProjectOutput: (
+      callback: (data: { projectId: string; data: string }) => void
+    ) => void;
   };
 }
