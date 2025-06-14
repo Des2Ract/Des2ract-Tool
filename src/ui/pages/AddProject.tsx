@@ -7,7 +7,7 @@ const AddProjectContainer = styled.div`
 `;
 
 const Input = styled.input`
-  width: 100%;
+  width: 80%;
   padding: 10px;
   margin-bottom: 20px;
 `;
