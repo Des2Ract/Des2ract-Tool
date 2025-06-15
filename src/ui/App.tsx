@@ -117,16 +117,16 @@ const App: FC = () => {
         <Dashboard projects={projects} onAddProject={handleAddProject} onProjectSelect={handleProjectSelect} />
       )}
       {currentView === 'addProject' && (
-        <AddProject onContinue={handleContinueFromAddProject} />
+        <AddProject onContinue={handleContinueFromAddProject} onReturnSelect={handleReturnSelect} />
       )}
       {currentView === 'TreeBuilder' && (
-        <JsonEditor step={1} onContinue={handleContinueFromTreeBuilder} projectData={projectData} />
+        <JsonEditor step={1} onContinue={handleContinueFromTreeBuilder} projectData={projectData} onReturnSelect={handleReturnSelect} />
       )}
       {currentView === 'SemanticAssigner' && (
-        <JsonEditor step={2} onContinue={handleContinueFromSemanticAssigner} projectData={projectData} />
+        <JsonEditor step={2} onContinue={handleContinueFromSemanticAssigner} projectData={projectData} onReturnSelect={handleReturnSelect}/>
       )}
       {currentView === 'SemanticGrouper' && (
-        <JsonEditor step={3} onContinue={handleContinueFromSemanticGrouper} projectData={projectData} />
+        <JsonEditor step={3} onContinue={handleContinueFromSemanticGrouper} projectData={projectData} onReturnSelect={handleReturnSelect}/>
       )}
       {currentView === 'projectView' && (
         <ProjectView

@@ -1,6 +1,9 @@
 import { FC, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import ArrowBack from '@mui/icons-material/ArrowBack';
 
 const JsonEditorContainer = styled.div`
   display: flex;
@@ -18,7 +21,7 @@ const Sidebar = styled.div`
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
-  height: 100%;
+  height: 96%;
 `;
 
 const SvgContainer = styled.div`
@@ -193,13 +196,14 @@ interface JsonEditorProps {
   step: number;
   onContinue: (json: unknown) => void;
   projectData: ProjectData;
+  onReturnSelect: () => void;
 }
 
 interface ApiResponse {
   data: GroupItem[] | TreeBuilderNode | unknown;
 }
 
-const JsonEditor: FC<JsonEditorProps> = ({ step, onContinue, projectData }) => {
+const JsonEditor: FC<JsonEditorProps> = ({ step, onContinue, projectData,onReturnSelect }) => {
   const [json, setJson] = useState<unknown>(null);
   const [svg, setSvg] = useState<string>('');
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -252,7 +256,6 @@ const JsonEditor: FC<JsonEditorProps> = ({ step, onContinue, projectData }) => {
     if (closingTagIndex === -1) {
       return svgContent;
     }
-    console.log(groups)
     const rects = groups
       .filter((group) => step === 2 || (step === 1 && group.checked))
       .map(
@@ -292,7 +295,7 @@ const JsonEditor: FC<JsonEditorProps> = ({ step, onContinue, projectData }) => {
           [responseJson, responseSvg] = await Promise.all([
             // axios.get('https://moadelezz2-des2ract.hf.space/api/new-tree-builder', { params })
             undefined,
-            axios.get('http://localhost:3123/svg'),
+            axios.get('https://moadelezz2-des2ract.hf.space/api/svg',{params}),
           ]);
           responseJson ={
             data: [
@@ -344,11 +347,27 @@ const JsonEditor: FC<JsonEditorProps> = ({ step, onContinue, projectData }) => {
           setGroups(extractedGroups);
           setSvg(appendGroupRectangles(responseSvg?.data as string, extractedGroups));
         } else if (step === 2) {
+            let fileKey: string | null = null;
+          let nodeId: string | null = null;
+
+          if (projectData.figmaLink) {
+            const url = new URL(projectData.figmaLink);
+            const pathParts = url.pathname.split('/');
+            if (pathParts.length > 2) {
+              fileKey = pathParts[2];
+            }
+            nodeId = url.searchParams.get('node-id') || null;
+          }
+
+          const params: Record<string, string> = {};
+          if (fileKey) params.fileKey = fileKey;
+          if (nodeId) params.nodeId = nodeId;
+
           [responseJson, responseSvg] = await Promise.all([
             axios.post('https://AOZ2025-Semantic-Assigner.hf.space/predict', projectData.json1?.data, {
               headers: { 'Content-Type': 'application/json' },
             }),
-            axios.get('http://localhost:3123/svg'),
+            axios.get('https://moadelezz2-des2ract.hf.space/api/svg',{params}),
           ]);
           const data = responseJson.data as TreeBuilderNode;
           setJson(data);
@@ -407,13 +426,15 @@ const JsonEditor: FC<JsonEditorProps> = ({ step, onContinue, projectData }) => {
           }
           nodeId = url.searchParams.get('node-id') || null;
         }
-        const params: Record<string, string> = {};
-        if (fileKey) params.fileKey = fileKey;
-        if (nodeId) params.nodeId = nodeId;
         
-        const response = await axios.get('https://moadelezz2-des2ract.hf.space/api/tree-builder', { params })
-        setJson(response.data);
-        onContinue(response.data);
+        const response = await axios.post('https://moadelezz2-des2ract.hf.space/api/tree-builder', 
+            {"fileKey":fileKey,"nodeId":nodeId,"keep":[]}, 
+            {headers: { 'Content-Type': 'application/json' },}
+        )
+        let responseJson = response.data;
+        responseJson.data = responseJson.data[0];
+        setJson(responseJson);
+        onContinue(responseJson);
       } else if (step === 2) {
         onContinue(json);
       } else {
@@ -452,7 +473,12 @@ const JsonEditor: FC<JsonEditorProps> = ({ step, onContinue, projectData }) => {
             return (
               <>
                 <Sidebar>
-                  <StepHeader>Step 1: Tree Builder</StepHeader>
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <IconButton onClick={onReturnSelect} sx={{ color: '#00000', mr: 1 }}>
+                          <ArrowBack />
+                        </IconButton>
+                        <StepHeader>Step 1: Tree Builder</StepHeader>
+                    </Box>
                   <SidebarHeader>
                     <span>Elements</span>
                     <CountBadge>{groups.filter(g => g.checked).length} selected</CountBadge>
@@ -489,7 +515,12 @@ const JsonEditor: FC<JsonEditorProps> = ({ step, onContinue, projectData }) => {
             return (
               <>
                 <Sidebar>
-                  <StepHeader>Step 2: Semantic Assigner</StepHeader>
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <IconButton onClick={onReturnSelect} sx={{ color: '#00000', mr: 1 }}>
+                          <ArrowBack />
+                        </IconButton>
+                        <StepHeader>Step 2: Semantic Assigner</StepHeader>
+                    </Box>
                   <SidebarHeader>
                     <span>Elements</span>
                     <CountBadge>{groups.length} total</CountBadge>
@@ -528,7 +559,12 @@ const JsonEditor: FC<JsonEditorProps> = ({ step, onContinue, projectData }) => {
           case 3:
             return (
               <>
-                  <StepHeader>Step 3: Semantic Grouper</StepHeader>
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <IconButton onClick={onReturnSelect} sx={{ color: '#00000', mr: 1 }}>
+                          <ArrowBack />
+                        </IconButton>
+                        <StepHeader>Step 3: Semantic Grouper</StepHeader>
+                    </Box>
                   <JsonTextArea
                     value={json ? JSON.stringify(json, null, 2) : ''}
                     onChange={(e) => {
