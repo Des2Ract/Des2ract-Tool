@@ -87,11 +87,6 @@ const TabSwitcher: FC<TabSwitcherProps> = ({ projects,projectId,figmaLink, files
           <PreviewFrame />
         </TabPanel>
       )}
-      {tabValue === 2 && (
-        <TabPanel sx={{ p: 0, height: '100%' }}>
-          <Editor projects={projects} currentProjectId={projectId} files={files} activeFile={activeFile} setActiveFile={setActiveFile} setFiles={setFiles} />
-        </TabPanel>
-      )}
     </Box>
   );
 };

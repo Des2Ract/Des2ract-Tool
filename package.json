@@ -1,5 +1,8 @@
 {
   "name": "des2ract-tool",
+  "author": {
+    "name": "Des2ract"
+  },
   "private": true,
   "version": "0.0.0",
   "type": "module",

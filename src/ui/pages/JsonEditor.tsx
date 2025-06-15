@@ -35,6 +35,23 @@ const SvgContainer = styled.div`
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin-left: 16px;
+  max-width: 100%;
+  max-height: 100%;
+  
+  & > div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  svg {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+  }
 `;
 
 const SidebarItem = styled.div<{ selected: boolean }>`
@@ -257,7 +274,7 @@ const JsonEditor: FC<JsonEditorProps> = ({ step, onContinue, projectData,onRetur
       return svgContent;
     }
     const rects = groups
-      .filter((group) => step === 2 || (step === 1 && group.checked))
+      .filter((group) => step === 2 || (step === 1))
       .map(
         (group) =>
           `<rect id="${group.id}" x="${group.x}" y="${group.y}" width="${group.width}" height="${
@@ -293,55 +310,11 @@ const JsonEditor: FC<JsonEditorProps> = ({ step, onContinue, projectData,onRetur
           if (nodeId) params.nodeId = nodeId;
 
           [responseJson, responseSvg] = await Promise.all([
-            // axios.get('https://moadelezz2-des2ract.hf.space/api/new-tree-builder', { params })
-            undefined,
+            axios.get('https://moadelezz2-des2ract.hf.space/api/filterGroups', { params }),
             axios.get('https://moadelezz2-des2ract.hf.space/api/svg',{params}),
           ]);
-          responseJson ={
-            data: [
-              {
-              id: 'group1',
-              x: 300,
-              y: 100,
-              width: 100,
-              height: 80,
-              checked: true,
-              },
-              {
-              id: 'group2',
-              x: 300,
-              y: 400,
-              width: 120,
-              height: 90,
-              checked: true,
-              },
-              {
-              id: 'group3',
-              x: 150,
-              y: 200,
-              width: 80,
-              height: 60,
-              checked: false,
-              },
-              {
-              id: 'group4',
-              x: 450,
-              y: 300,
-              width: 150,
-              height: 100,
-              checked: true,
-              },
-              {
-              id: 'group5',
-              x: 200,
-              y: 500,
-              width: 90,
-              height: 70,
-              checked: false,
-              },
-            ],
-          };
-          const data = responseJson.data as GroupItem[];
+          
+          const data = (responseJson.data as ApiResponse).data as GroupItem[];
           setJson(data);
           const extractedGroups = extractGroupsStep1(data);
           setGroups(extractedGroups);
@@ -416,6 +389,8 @@ const JsonEditor: FC<JsonEditorProps> = ({ step, onContinue, projectData,onRetur
     setIsLoading(true);
     try {
       if (step === 1) {
+        const checkedIds = groups.filter(g => g.checked).map(g => g.id);
+
         let fileKey: string | null = null;
         let nodeId: string | null = null;
         if (projectData.figmaLink) {
@@ -428,7 +403,7 @@ const JsonEditor: FC<JsonEditorProps> = ({ step, onContinue, projectData,onRetur
         }
         
         const response = await axios.post('https://moadelezz2-des2ract.hf.space/api/tree-builder', 
-            {"fileKey":fileKey,"nodeId":nodeId,"keep":[]}, 
+            {"fileKey":fileKey,"nodeId":nodeId,"keep":checkedIds}, 
             {headers: { 'Content-Type': 'application/json' },}
         )
         let responseJson = response.data;

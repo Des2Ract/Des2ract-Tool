@@ -11,6 +11,7 @@ import ArrowBack from '@mui/icons-material/ArrowBack';
 
 interface ProjectViewProps {
   projects: Project[];
+  setProjects: (projects: Project[]) => void;
   currentProjectId: string;
   files: { [key: string]: string };
   activeFile: string | null;
@@ -63,6 +64,7 @@ const TabPanel = styled(Box)(({ theme }) => ({
 
 const ProjectView: FC<ProjectViewProps> = ({
   projects,
+  setProjects,
   currentProjectId,
   files,
   activeFile,
@@ -70,7 +72,6 @@ const ProjectView: FC<ProjectViewProps> = ({
   setFiles,
   onReturnSelect
 }) => {
-  console.log('Current Project ID:', currentProjectId);
   const [tabValue, setTabValue] = useState<number>(0);
   const [isRunning, setIsRunning] = useState(false);
   const [output, setOutput] = useState<string[]>([]);
@@ -86,7 +87,6 @@ const ProjectView: FC<ProjectViewProps> = ({
       
         // Try to detect port
         const portMatch = data.match(/Local:\s+http:\/\/localhost:(\d+)/);
-        console.log('portMatch:', portMatch); // Debugging line
         if (portMatch) {
           setPort(parseInt(portMatch[1], 10));
         }
@@ -101,7 +101,7 @@ const ProjectView: FC<ProjectViewProps> = ({
   const handleRunProject = () => {
     setOutput([]);
     setIsRunning(true);
-    window.electron.runProject(currentProjectId, 'npm run dev -- --port 3000');
+    window.electron.runProject(currentProjectId, 'npm i && npm run dev -- --port 3000');
   };
 
   const handleStopProject = () => {
@@ -166,6 +166,7 @@ const ProjectView: FC<ProjectViewProps> = ({
         <TabPanel>
           <Editor
             projects={projects}
+            setProjects={setProjects}
             currentProjectId={currentProjectId || ''}
             files={files}
             activeFile={activeFile}

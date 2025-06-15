@@ -78,7 +78,7 @@ const App: FC = () => {
   const handleContinueFromSemanticGrouper = async (json3: any) => {
     try {
       // Call API to get zip file
-      const response = await axios.post('http://localhost:3000/download', { json3 }, {
+      const response = await axios.post('http://localhost:5000/download', { json3 }, {
         responseType: 'arraybuffer'
       });
       
@@ -131,6 +131,7 @@ const App: FC = () => {
       {currentView === 'projectView' && (
         <ProjectView
           projects={projects}
+          setProjects={setProjects}
           currentProjectId={currentProjectId || ''}
           files={currentFiles}
           activeFile={currentActiveFile}

@@ -4,6 +4,7 @@ import FileExplorer from './FileExplorer';
 
 interface EditorProps {
   projects: Project[];
+  setProjects: (projects: Project[]) => void;
   currentProjectId: string;
   files: { [key: string]: string };
   activeFile: string | null;
@@ -11,14 +12,13 @@ interface EditorProps {
   setFiles: (files: { [key: string]: string }) => void;
 }
 
-const Editor: FC<EditorProps> = ({ projects,currentProjectId, files, activeFile, setActiveFile, setFiles }) => {
+const Editor: FC<EditorProps> = ({ projects,setProjects,currentProjectId, files, activeFile, setActiveFile, setFiles }) => {
   const project = projects.find(p => p.id === currentProjectId) as Project;
   const handleEditorChange = async (value: string | undefined) => {
     if (activeFile && value !== undefined) {
       const updatedFiles = { ...files, [activeFile]: value };
+      setProjects(projects.map(p => p.id === currentProjectId ? { ...p, files: updatedFiles } : p));
       setFiles(updatedFiles);
-      console.log('Saving changes to file:', activeFile); // Debugging line
-      console.log('Project:', project); // Debugging line
       await window.electron.saveProject(project, { [activeFile]: value });
     }
   };

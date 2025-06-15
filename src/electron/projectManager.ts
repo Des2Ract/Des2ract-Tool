@@ -7,18 +7,31 @@ import { Project } from "./util.js";
 import AdmZip from "adm-zip";
 import { fileURLToPath } from "url";
 import treeKill from "tree-kill";
+import { isDev } from "./util.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PROJECTS_DIR = path.join(__dirname, "../", "projects");
+// const PROJECTS_DIR = path.join(__dirname, isDev() ? "../" : "./", "projects");
+const PROJECTS_DIR = path.join(app.getPath("downloads"), "des2ract-projects");
 let activeProcesses: Record<string, ChildProcess> = {};
 
 export function initProjectManager(mainWindow: BrowserWindow) {
   // Ensure projects directory exists
+  if (fs.existsSync(PROJECTS_DIR)) {
+    const stat = fs.statSync(PROJECTS_DIR);
+    if (!stat.isDirectory()) {
+      console.error(
+        `${PROJECTS_DIR} exists but is not a directory. Removing it...`
+      );
+      fs.unlinkSync(PROJECTS_DIR); // or renameSync if you want to preserve it
+    }
+  }
+
   if (!fs.existsSync(PROJECTS_DIR)) {
     fs.mkdirSync(PROJECTS_DIR, { recursive: true });
   }
+  console.log(`Projects directory: ${PROJECTS_DIR}`);
 
   function readAllFilesRecursively(
     dir: string,
@@ -29,6 +42,8 @@ export function initProjectManager(mainWindow: BrowserWindow) {
     const entries = fs.readdirSync(dir, { withFileTypes: true });
 
     for (const entry of entries) {
+      if (entry.name === "node_modules") continue; // Exclude node_modules
+
       const fullPath = path.join(dir, entry.name);
       const relativePath = path
         .relative(basePath, fullPath)
@@ -59,7 +74,7 @@ export function initProjectManager(mainWindow: BrowserWindow) {
 
         if (fs.existsSync(metaPath)) {
           const meta = JSON.parse(fs.readFileSync(metaPath, "utf-8"));
-          const files = readAllFilesRecursively(projectPath, projectPath); // 👈 get all files
+          const files = readAllFilesRecursively(projectPath, projectPath);
           return { ...meta, files, path: projectPath };
         }
         return null;
@@ -69,7 +84,6 @@ export function initProjectManager(mainWindow: BrowserWindow) {
 
   ipcMain.handle("save-project", async (_, { project, files }) => {
     const projectPath = path.join(PROJECTS_DIR, project.id);
-
     if (!fs.existsSync(projectPath)) {
       fs.mkdirSync(projectPath, { recursive: true });
     }
