@@ -105,7 +105,8 @@ export function initProjectManager(mainWindow: BrowserWindow) {
       }
     });
 
-    const meta = { ...project, path: projectPath };
+    // Exclude 'files' from the meta object before saving
+    const { files: _files, ...meta } = { ...project, path: projectPath };
     fs.writeFileSync(
       path.join(projectPath, "project.json"),
       JSON.stringify(meta, null, 2)

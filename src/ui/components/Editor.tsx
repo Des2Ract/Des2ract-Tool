@@ -1,6 +1,7 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useCallback } from 'react';
 import MonacoEditor from 'react-monaco-editor';
 import FileExplorer from './FileExplorer';
+import debounce from 'lodash/debounce'; // Or implement your own debounce
 
 interface EditorProps {
   projects: Project[];
@@ -12,16 +13,21 @@ interface EditorProps {
   setFiles: (files: { [key: string]: string }) => void;
 }
 
-const Editor: FC<EditorProps> = ({ projects,setProjects,currentProjectId, files, activeFile, setActiveFile, setFiles }) => {
+const Editor: FC<EditorProps> = ({ projects, setProjects, currentProjectId, files, activeFile, setActiveFile, setFiles }) => {
   const project = projects.find(p => p.id === currentProjectId) as Project;
-  const handleEditorChange = async (value: string | undefined) => {
-    if (activeFile && value !== undefined) {
-      const updatedFiles = { ...files, [activeFile]: value };
-      setProjects(projects.map(p => p.id === currentProjectId ? { ...p, files: updatedFiles } : p));
-      setFiles(updatedFiles);
-      await window.electron.saveProject(project, { [activeFile]: value });
-    }
-  };
+
+  // Debounced handler to limit state updates
+  const debouncedHandleEditorChange = useCallback(
+    debounce(async (value: string | undefined) => {
+      if (activeFile && value !== undefined) {
+        const updatedFiles = { ...files, [activeFile]: value };
+        setProjects(projects.map(p => p.id === currentProjectId ? { ...p, files: updatedFiles } : p));
+        setFiles(updatedFiles);
+        await window.electron.saveProject(project, { [activeFile]: value });
+      }
+    }, 300), // Adjust delay as needed
+    [activeFile, files, projects, currentProjectId, project, setFiles, setProjects]
+  );
 
   return (
     <div style={{ display: 'flex', height: 'calc(100vh - 150px)', background: '#1e1e1e' }}>
@@ -33,7 +39,7 @@ const Editor: FC<EditorProps> = ({ projects,setProjects,currentProjectId, files,
           language="javascript"
           theme="vs-dark"
           value={activeFile ? files[activeFile] : ''}
-          onChange={handleEditorChange}
+          onChange={debouncedHandleEditorChange}
           options={{ automaticLayout: true }}
         />
       </div>

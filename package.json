@@ -39,6 +39,7 @@
   "devDependencies": {
     "@playwright/test": "^1.47.2",
     "@types/adm-zip": "^0.5.7",
+    "@types/lodash": "^4.17.17",
     "@types/node": "^22.5.5",
     "@types/os-utils": "^0.0.4",
     "@types/react": "^18.3.8",
