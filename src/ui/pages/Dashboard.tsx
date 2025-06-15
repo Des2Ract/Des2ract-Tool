@@ -1,14 +1,16 @@
 import { FC } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
-// --- Global Styles for a cohesive look ---
+// --- Global Styles for a cohesive and modern look ---
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
   body {
-    background-color: #1a1a2e;
-    color: #e0e0e0;
-    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    color: #343a40;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 `;
 
@@ -18,25 +20,30 @@ const DashboardWrapper = styled.div`
 `;
 
 const Sidebar = styled.div`
-  width: 150px;
-  background-color: #161625;
+  width: 180px;
+  background-color: #ffffff;
   padding: 30px 20px;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid #2a2a3e;
+  border-right: 1px solid #e9ecef;
 `;
 
 const Logo = styled.h1`
-  font-size: 1.8rem;
-  color: #ffffff;
-  margin-bottom: 40px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #3B82F6;
+  margin-bottom: 50px;
   text-align: center;
-  letter-spacing: 1px;
+  letter-spacing: -1px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const DashboardContainer = styled.div`
   flex: 1;
-  padding: 40px;
+  padding: 40px 50px;
   overflow-y: auto;
 `;
 
@@ -49,13 +56,13 @@ const Header = styled.div`
 
 const Title = styled.h2`
   font-size: 2.5rem;
-  font-weight: 600;
-  color: #ffffff;
+  font-weight: 700;
+  color: #212529;
 `;
 
 const AddButton = styled.button`
   padding: 12px 24px;
-  background: linear-gradient(90deg, #5A67D8, #3B82F6);
+  background: #3B82F6;
   color: white;
   border: none;
   border-radius: 8px;
@@ -66,11 +73,11 @@ const AddButton = styled.button`
   align-items: center;
   gap: 8px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
   }
 `;
 
@@ -79,45 +86,47 @@ const ProjectList = styled.ul`
   padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 25px;
+  gap: 30px;
 `;
 
 const ProjectItem = styled.li`
-  background-color: #1e1e32;
+  background-color: #ffffff;
   padding: 25px;
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  border: 1px solid #2a2a3e;
+  border: 1px solid #e9ecef;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 150px;
+  min-height: 160px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 
   &:hover {
     transform: translateY(-5px);
-    background-color: #24243e;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     border-color: #3B82F6;
   }
 `;
 
 const ProjectName = styled.span`
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: #e0e0e0;
-  
-  /* --- Add these lines to prevent overflow --- */
+  color: #343a40;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
 
 const ProjectDetails = styled.div`
-  margin-top: 15px;
+  margin-top: 20px;
   font-size: 0.9rem;
-  color: #a0a0b0;
+  color: #6c757d;
+  
+  p {
+    margin: 5px 0;
+  }
 `;
-
 
 interface Project {
   id: string;
@@ -138,13 +147,15 @@ const Dashboard: FC<DashboardProps> = ({ projects, onAddProject, onProjectSelect
       <GlobalStyle />
       <DashboardWrapper>
         <Sidebar>
-          <Logo>Des2ract</Logo>
+          <Logo><Title>Des</Title><h1>2</h1><Title>ract</Title></Logo>
         </Sidebar>
         <DashboardContainer>
           <Header>
             <Title>Your Projects</Title>
             <AddButton onClick={onAddProject}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
+                <path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"></path>
+              </svg>
               New Project
             </AddButton>
           </Header>
