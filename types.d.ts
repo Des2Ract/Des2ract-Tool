@@ -17,7 +17,10 @@ interface Window {
     ) => Promise<Project>;
     runProject: (projectId: string, command: string) => Promise<void>;
     stopProject: (projectId: string) => Promise<boolean>;
-    unzipProject: (projectId: string, zipData: Buffer) => Promise<string>;
+    unzipProject: (
+      projectId: string,
+      zipData: Buffer
+    ) => Promise<{ [key: string]: string }, string>;
     onProjectOutput: (
       callback: (data: { projectId: string; data: string }) => void
     ) => void;

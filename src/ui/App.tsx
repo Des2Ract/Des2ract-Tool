@@ -87,23 +87,30 @@ const App: FC = () => {
       const projectName = formatFigmaName(projectData.figmaLink as string);
       
       // Unzip the project
-      let path = await window.electron.unzipProject(projectId, response.data);
-      
+      const unzipResult = await window.electron.unzipProject(projectId, response.data);
+
+      const files = unzipResult.files;
+      const projectPath = unzipResult.path;
+
       // Save project metadata
       const project : Project= {
         id: projectId,
         name: projectName,
-        files: {
-        },
+        files: files as any,
         figmaLink: projectData.figmaLink || '',
-        path: path
+        path: projectPath
       };
       
       await window.electron.saveProject(project, {});
-      
+
       // Update state
       setProjects(prev => [...prev, project]);
-      setCurrentProjectId(projectId);
+      
+      setCurrentProjectId(project.id);
+      
+      setCurrentFiles(project.files);
+      
+      setCurrentActiveFile(Object.keys(project.files)[0] || null);
       setCurrentView('projectView');
       
     } catch (error) {

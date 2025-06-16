@@ -170,6 +170,8 @@ export function initProjectManager(mainWindow: BrowserWindow) {
     const zip = new AdmZip(buffer);
     zip.extractAllTo(projectPath, true);
 
-    return projectPath;
+    const files = readAllFilesRecursively(projectPath, projectPath);
+
+    return { files, projectPath };
   });
 }
