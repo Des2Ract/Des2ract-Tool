@@ -36,13 +36,29 @@ const ErrorMessage = styled.div`
   }
 `;
 
+const WarningMessage = styled.div`
+  color: black;
+  font-size: 1rem;
+  text-align: center;
+  padding: 40px;
+  background: rgba(255 186 0 / 0.6);
+  border-radius: 12px;
+  a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
 const FigmaEmbed: FC<FigmaEmbedProps> = ({ figmaLink }) => {
   const [embedUrl, setEmbedUrl] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!figmaLink) {
-      setError('Please provide a valid Figma link.');
       return;
     }
 
@@ -80,7 +96,7 @@ const FigmaEmbed: FC<FigmaEmbedProps> = ({ figmaLink }) => {
     }
   }, [figmaLink]);
 
-  if (error || !embedUrl) {
+  if (error) {
     return (
       <ErrorMessage>
         {error || 'Loading...'}
@@ -96,8 +112,12 @@ const FigmaEmbed: FC<FigmaEmbedProps> = ({ figmaLink }) => {
     );
   }
 
+  if (!embedUrl) {
+    return null;
+  }
+
   return (
-    <EmbedContainer>
+    <div className='w-full h-full'>
       <iframe
         style={{
           border: 'none',
@@ -114,7 +134,7 @@ const FigmaEmbed: FC<FigmaEmbedProps> = ({ figmaLink }) => {
           )
         }
       />
-    </EmbedContainer>
+    </div>
   );
 };
 

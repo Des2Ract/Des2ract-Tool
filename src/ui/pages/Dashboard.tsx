@@ -1,5 +1,7 @@
 import { FC } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import DefaultSidebar from '../components/sidebars/dashboard-sidebar';
+import { Avatar, AvatarImage } from '@/components/ui/avatar';
 
 // --- Global Styles for a cohesive and modern look ---
 const GlobalStyle = createGlobalStyle`
@@ -19,27 +21,6 @@ const DashboardWrapper = styled.div`
   height: 100vh;
 `;
 
-const Sidebar = styled.div`
-  width: 180px;
-  background-color: #ffffff;
-  padding: 30px 20px;
-  display: flex;
-  flex-direction: column;
-  border-right: 1px solid #e9ecef;
-`;
-
-const Logo = styled.h1`
-  font-size: 2rem;
-  font-weight: 700;
-  color: #3B82F6;
-  margin-bottom: 50px;
-  text-align: center;
-  letter-spacing: -1px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 
 const DashboardContainer = styled.div`
   flex: 1;
@@ -48,6 +29,7 @@ const DashboardContainer = styled.div`
 `;
 
 const Header = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -144,11 +126,9 @@ interface DashboardProps {
 const Dashboard: FC<DashboardProps> = ({ projects, onAddProject, onProjectSelect }) => {
   return (
     <>
-      <GlobalStyle />
-      <DashboardWrapper>
-        <Sidebar>
-          <Logo><Title>Des</Title><h1>2</h1><Title>ract</Title></Logo>
-        </Sidebar>
+      <DashboardWrapper className='w-full'>
+        <DefaultSidebar />
+        
         <DashboardContainer>
           <Header>
             <Title>Your Projects</Title>
@@ -159,19 +139,34 @@ const Dashboard: FC<DashboardProps> = ({ projects, onAddProject, onProjectSelect
               New Project
             </AddButton>
           </Header>
-          <ProjectList>
-            {projects.map(project => (
-              <ProjectItem key={project.id} onClick={() => onProjectSelect(project.id)}>
-                <ProjectName title={project.name}>
-                  {project.name}
-                </ProjectName>
-                <ProjectDetails>
-                  <p>Figma: {project.figmaLink ? 'Linked' : 'Not Linked'}</p>
-                  <p>Files: {Object.keys(project.files).length}</p>
-                </ProjectDetails>
-              </ProjectItem>
-            ))}
-          </ProjectList>
+
+          {
+            projects?.length === 0 ? (
+              <div className="flex flex-col justify-start items-center h-full">
+                <Avatar className="w-100 h-100">
+                    <AvatarImage src="/src/assets/logo.png"/>
+                </Avatar>
+
+                <h1 className="animate-pulse">
+                    No Projects Found
+                </h1>
+              </div>
+            ) :
+            <ProjectList>
+              {projects.map(project => (
+                <ProjectItem key={project.id} onClick={() => onProjectSelect(project.id)}>
+                  <ProjectName title={project.name}>
+                    {project.name}
+                  </ProjectName>
+                  <ProjectDetails>
+                    <p>Figma: {project.figmaLink ? 'Linked' : 'Not Linked'}</p>
+                    <p>Files: {Object.keys(project.files).length}</p>
+                  </ProjectDetails>
+                </ProjectItem>
+              ))}
+            </ProjectList>
+          }
+
         </DashboardContainer>
       </DashboardWrapper>
     </>

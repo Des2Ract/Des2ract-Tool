@@ -1,9 +1,15 @@
 import { FC, useState,useEffect } from 'react';
 import Dashboard from './pages/Dashboard';
 import AddProject from './pages/AddProject';
-import JsonEditor from './pages/JsonEditor';
-import ProjectView from './pages/ProjectView';
 import axios from 'axios';
+import './index.css';
+import './App.css'
+import RedundantGroupsView from './pages/PreBuilder';
+import { GroupItem } from '@/lib/types';
+import TreebuilderResultsView from './pages/TreeBuilder';
+import SemanticAssignerView from './pages/SematicAssigner';
+import SemanticGrouperView from './pages/SemanticGrouper';
+import ProjectView from './pages/ProjectView';
 
 const formatFigmaName = (url:string) => {
   if (!url) return "Untitled Project";
@@ -25,18 +31,30 @@ const formatFigmaName = (url:string) => {
   }
 };
 
+const screenNames = [
+  'Dashboard',
+  'Add Project',
+  'Pre Tree Builder',
+  'Tree Builder',
+  'Semantic Assigner',
+  'Semantic Grouper',
+  'Project View'
+]
+
 const App: FC = () => {
-  const [currentView, setCurrentView] = useState<'dashboard' | 'addProject' | 'TreeBuilder' | 'SemanticAssigner' | 'SemanticGrouper' | 'projectView'>('dashboard');
+  const [currentView, setCurrentView] = useState<number>(0);
   const [projects, setProjects] = useState<Project[]>([]);
-  const [projectData, setProjectData] = useState<{ figmaLink?: string; json1?: any; json2?: any; json3?: any; files?: { [key: string]: string } }>({});
+  const [projectUrl, setProjectUrl] = useState<string>('');
+  
+  const [keepGroups, setKeepGroups] = useState<GroupItem[]>([]); 
+  const [designSvg, setDesignSvg] = useState<string>('');
+  const [designTree, setDesignTree] = useState<any>(null);
+  const [semanticTree, setSemanticTree] = useState<any>(null);
+  const [groupedTree, setGroupedTree] = useState<any>(null);
+  
   const [currentFiles, setCurrentFiles] = useState<{ [key: string]: string }>({});
   const [currentActiveFile, setCurrentActiveFile] = useState<string | null>(null);
   const [currentProjectId, setCurrentProjectId] = useState<string | null>(null);
-
-  const handleAddProject = () => {
-    setCurrentView('addProject');
-    setProjectData({});
-  };
 
   const handleProjectSelect = (projectId: string) => {
     const project = projects.find(p => p.id === projectId);
@@ -44,47 +62,32 @@ const App: FC = () => {
       setCurrentProjectId(project.id);
       setCurrentFiles(project.files);
       setCurrentActiveFile(Object.keys(project.files)[0] || null);
-      setCurrentView('projectView');
+      setCurrentView( screenNames.indexOf('Project View') );
     }
   };
 
   const handleReturnSelect = () => {
-      setCurrentView('dashboard');
-  };
-
-  const handleContinueFromAddProject = (figmaLink: string) => {
-    setProjectData({ figmaLink });
-    setCurrentView('TreeBuilder');
-  };
-
-  const handleContinueFromTreeBuilder = async (json1: any) => {
-    setProjectData(prev => ({ ...prev, json1 }));
-    setCurrentView('SemanticAssigner');
-  };
-
-  const handleContinueFromSemanticAssigner = async (json2: any) => {
-    setProjectData(prev => ({ ...prev, json2 }));
-    setCurrentView('SemanticGrouper');
+      setCurrentView( screenNames.indexOf('Dashboard') );
   };
 
   useEffect(() => {
-  const loadProjects = async () => {
-    const projects = await window.electron.getProjects();
-    setProjects(projects);
-  };
-  loadProjects();
-}, []);
+    const loadProjects = async () => {
+      const projects = await window.electron.getProjects();
+      setProjects(projects);
+    };
+    loadProjects();
+  }, []);
 
-  const handleContinueFromSemanticGrouper = async (json3: any) => {
+  const handleContinueFromSemanticGrouper = async (finalTree: any) => {
     try {
       // Call API to get zip file
-      const response = await axios.post('http://localhost:5000/download', { json3 }, {
+      const response = await axios.post('http://localhost:5000/download', { finalTree }, {
         responseType: 'arraybuffer'
       });
       
       // Create project
       const projectId = `project-${Date.now()}`;
-      const projectName = formatFigmaName(projectData.figmaLink as string);
+      const projectName = formatFigmaName(projectUrl as string);
       
       // Unzip the project
       const unzipResult = await window.electron.unzipProject(projectId, response.data);
@@ -97,7 +100,7 @@ const App: FC = () => {
         id: projectId,
         name: projectName,
         files: files as any,
-        figmaLink: projectData.figmaLink || '',
+        figmaLink: projectUrl || '',
         path: projectPath
       };
       
@@ -111,7 +114,8 @@ const App: FC = () => {
       setCurrentFiles(project.files);
       
       setCurrentActiveFile(Object.keys(project.files)[0] || null);
-      setCurrentView('projectView');
+
+      setCurrentView(screenNames.indexOf('Project View'));
       
     } catch (error) {
       console.error('Error getting final files:', error);
@@ -119,23 +123,82 @@ const App: FC = () => {
   };
 
   return (
-    <>
-      {currentView === 'dashboard' && (
-        <Dashboard projects={projects} onAddProject={handleAddProject} onProjectSelect={handleProjectSelect} />
+    <main className='h-screen flex bg-white '>   
+      {currentView === 0 && (
+        <Dashboard projects={projects} 
+          onAddProject={() => { 
+            setCurrentView( screenNames.indexOf('Add Project') ); 
+            setProjectUrl(''); 
+          }} 
+          onProjectSelect={handleProjectSelect} 
+        />
       )}
-      {currentView === 'addProject' && (
-        <AddProject onContinue={handleContinueFromAddProject} onReturnSelect={handleReturnSelect} />
+
+      {currentView === 1 && (
+        <AddProject 
+          onContinue={(url: string) => { 
+            setProjectUrl(url); 
+            setCurrentView( screenNames.indexOf('Pre Tree Builder') ); 
+          }} 
+          onBackPressed={() => { setCurrentView( screenNames.indexOf('Dashboard') ); }}
+          onHomePressed={() => { setCurrentView( screenNames.indexOf('Dashboard') ); }} 
+        />
       )}
-      {currentView === 'TreeBuilder' && (
-        <JsonEditor step={1} onContinue={handleContinueFromTreeBuilder} projectData={projectData} onReturnSelect={handleReturnSelect} />
+
+      {currentView === 2 && (
+        <RedundantGroupsView 
+          figmaUrl={projectUrl} 
+          onContinue={(keep: GroupItem[], svg: string) => { 
+            setKeepGroups(keep); 
+            setDesignSvg(svg); 
+            setCurrentView( screenNames.indexOf('Tree Builder') ); 
+          }} 
+          onBackPressed={() => { setCurrentView( screenNames.indexOf('Add Project') ); }}
+          onHomePressed={() => { setCurrentView( screenNames.indexOf('Dashboard') ); }}
+        />
       )}
-      {currentView === 'SemanticAssigner' && (
-        <JsonEditor step={2} onContinue={handleContinueFromSemanticAssigner} projectData={projectData} onReturnSelect={handleReturnSelect}/>
+     
+      {currentView === 3 && (
+        <TreebuilderResultsView 
+          figmaUrl={projectUrl} 
+          svg={designSvg}
+          keepGroups={keepGroups}
+          onContinue={(designTree: any) => { 
+            setDesignTree(designTree); 
+            setCurrentView( screenNames.indexOf('Semantic Assigner') ); 
+          }} 
+          onBackPressed={() => { setCurrentView( screenNames.indexOf('Pre Tree Builder') ); }}
+          onHomePressed={() => { setCurrentView( screenNames.indexOf('Dashboard') ); }}
+        />
       )}
-      {currentView === 'SemanticGrouper' && (
-        <JsonEditor step={3} onContinue={handleContinueFromSemanticGrouper} projectData={projectData} onReturnSelect={handleReturnSelect}/>
+     
+      {currentView === 4 && (
+        <SemanticAssignerView 
+          pageTree={designTree}
+          svg={designSvg}
+          onContinue={(semanticTree: any) => {
+            setSemanticTree(semanticTree);
+            setCurrentView(screenNames.indexOf('Semantic Grouper'));
+          }}
+          onBackPressed={() => { setCurrentView( screenNames.indexOf('Tree Builder') ); }}
+          onHomePressed={() => { setCurrentView( screenNames.indexOf('Dashboard') ); }}  
+        />
       )}
-      {currentView === 'projectView' && (
+     
+      {currentView === 5 && (
+        <SemanticGrouperView 
+          pageTree={semanticTree}
+          svg={designSvg}
+          onContinue={(componentsTree: any) => {
+            setGroupedTree(componentsTree);
+            handleContinueFromSemanticGrouper(componentsTree);
+          }}  
+          onBackPressed={() => { setCurrentView( screenNames.indexOf('Semantic Assigner') ); }}
+          onHomePressed={() => { setCurrentView( screenNames.indexOf('Dashboard') ); }}
+        />
+      )}
+     
+      {currentView === 6 && (
         <ProjectView
           projects={projects}
           setProjects={setProjects}
@@ -147,7 +210,7 @@ const App: FC = () => {
           onReturnSelect={handleReturnSelect}
         />
       )}
-    </>
+    </main>
   );
 };
 

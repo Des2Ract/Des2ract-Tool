@@ -1,5 +1,11 @@
 import { contextBridge, ipcRenderer } from "electron";
-import path from "path";
+
+contextBridge.exposeInMainWorld("electronAPI", {
+  send: (channel: string, data?: any) => ipcRenderer.send(channel, data),
+  on: (channel: string, callback: (event: any, data: any) => void) => {
+    ipcRenderer.on(channel, (event, data) => callback(event, data));
+  },
+});
 
 contextBridge.exposeInMainWorld("electron", {
   getProjects: (): Promise<Project[]> => ipcRenderer.invoke("get-projects"),
@@ -25,5 +31,5 @@ contextBridge.exposeInMainWorld("electron", {
     callback: (data: { projectId: string; data: string }) => void
   ): void => {
     ipcRenderer.on("project-output", (_, data) => callback(data));
-  },
+  }
 });
