@@ -62,7 +62,6 @@ export function initProjectManager(mainWindow: BrowserWindow) {
   }
 
   ipcMain.handle("get-projects", async () => {
-    
     const projectDirs = fs
       .readdirSync(PROJECTS_DIR, { withFileTypes: true })
       .filter((dirent) => dirent.isDirectory())
@@ -174,5 +173,9 @@ export function initProjectManager(mainWindow: BrowserWindow) {
     const files = readAllFilesRecursively(projectPath, projectPath);
 
     return { files, projectPath };
+  });
+
+  ipcMain.handle("get-assets-path", () => {
+    return path.join(app.getAppPath(), isDev() ? "." : "..", "/src/assets");
   });
 }

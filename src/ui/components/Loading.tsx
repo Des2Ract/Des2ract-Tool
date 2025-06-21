@@ -1,10 +1,23 @@
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import React from "react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 export default function LoadingEffect() {
+    const [logoPath, setLogoPath] = React.useState<string | null>(null);
+
+    React.useEffect(() => {
+        window.electron.getAssetsPath().then((path: string) => {
+            setLogoPath(path + "\\loading.gif");
+        });
+    }, []);
+
     return (
         <div className="flex flex-col items-center justify-center h-full">
-            <Avatar className="w-100 h-100">
-                <AvatarImage src="/src/assets/logo.png"/>
+            <Avatar className="w-32 h-32">
+                {logoPath ? (
+                    <AvatarImage src={logoPath} className="w-32 h-32" />
+                ) : (
+                    <AvatarFallback>D2R</AvatarFallback>
+                )}
             </Avatar>
 
             <h1 className="animate-pulse">

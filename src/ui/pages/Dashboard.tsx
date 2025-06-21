@@ -2,6 +2,8 @@ import { FC } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import DefaultSidebar from '../components/sidebars/dashboard-sidebar';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import { AvatarFallback } from '@/components/ui/avatar';
+import React from 'react';
 
 // --- Global Styles for a cohesive and modern look ---
 const GlobalStyle = createGlobalStyle`
@@ -143,9 +145,26 @@ const Dashboard: FC<DashboardProps> = ({ projects, onAddProject, onProjectSelect
           {
             projects?.length === 0 ? (
               <div className="flex flex-col justify-start items-center h-full">
-                <Avatar className="w-100 h-100">
-                    <AvatarImage src="/src/assets/logo.png"/>
-                </Avatar>
+
+                {(() => {
+                    const [logoPath, setLogoPath] = React.useState<string | null>(null);
+                                  
+                    React.useEffect(() => {
+                        window.electron.getAssetsPath().then((path: string) => {
+                            setLogoPath(path + "\\logo.png");
+                        });
+                    }, []);
+                  
+                    return (
+                        <Avatar className="w-100 h-100">
+                            {logoPath ? (
+                                <AvatarImage src={logoPath} />
+                            ) : (
+                                <AvatarFallback>D2R</AvatarFallback>
+                            )}
+                        </Avatar>
+                    );
+                })()}
 
                 <h1 className="animate-pulse">
                     No Projects Found

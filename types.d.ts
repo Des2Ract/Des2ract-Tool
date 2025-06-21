@@ -24,5 +24,6 @@ interface Window {
     onProjectOutput: (
       callback: (data: { projectId: string; data: string }) => void
     ) => void;
+    getAssetsPath: () => Promise<string>;
   };
 }

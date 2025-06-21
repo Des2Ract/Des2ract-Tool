@@ -24,5 +24,7 @@ contextBridge.exposeInMainWorld("electron", {
     callback: (data: { projectId: string; data: string }) => void
   ): void => {
     ipcRenderer.on("project-output", (_, data) => callback(data));
-  }
+  },
+
+  getAssetsPath: (): Promise<string> => ipcRenderer.invoke("get-assets-path"),
 });
