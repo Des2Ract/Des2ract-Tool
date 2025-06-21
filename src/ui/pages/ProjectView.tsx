@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import PreviewFrame from '../components/PreviewFrame';
 import Editor from '../components/Editor';
-import { Code, Devices, PlayArrow, Stop, Terminal } from '@mui/icons-material';
+import { BorderBottom, Code, Devices, PlayArrow, Stop, Terminal } from '@mui/icons-material';
 import ArrowBack from '@mui/icons-material/ArrowBack';
 
 interface ProjectViewProps {
@@ -21,7 +21,6 @@ interface ProjectViewProps {
 }
 
 const StyledTabs = styled(Tabs)({
-  borderBottom: '1px solid #374151',
   '& .MuiTabs-indicator': {
     backgroundColor: '#3B82F6',
     height: '3px',
@@ -39,13 +38,14 @@ const StyledTab = styled((props: { label: string; icon: React.ReactElement }) =>
   },
   fontWeight: theme.typography.fontWeightRegular,
   marginRight: theme.spacing(1),
-  color: '#9CA3AF',
+  color: 'black',
   fontFamily: "'Inter', sans-serif",
   fontSize: '1rem',
   padding: '12px 16px',
+  transition: 'all 0.2s ease-in-out',
   '&:hover': {
     color: '#F9FAFB',
-    opacity: 1,
+    opacity: 0.7,
   },
   '&.Mui-selected': {
     color: '#F9FAFB',
@@ -58,6 +58,7 @@ const StyledTab = styled((props: { label: string; icon: React.ReactElement }) =>
 
 const TabPanel = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
+  backgroundColor: 'white',
   height: 'calc(100% - 49px)',
   overflow: 'auto',
 }));
@@ -127,83 +128,79 @@ const ProjectView: FC<ProjectViewProps> = ({
   ];
 
   return (
-    <Box sx={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <Box
-        sx={{
-          backgroundColor: '#111827',
-          borderRadius: '8px 8px 0 0',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          paddingLeft: 1,
-        }}
-      >
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <IconButton onClick={handleBack} sx={{ color: '#F9FAFB', mr: 1 }}>
-            <ArrowBack />
-          </IconButton>
-          <StyledTabs value={tabValue} onChange={handleChange}>
-            {tabs.map((tab, index) => (
-              <StyledTab key={index} icon={tab.icon} label={tab.label} />
-            ))}
-          </StyledTabs>
-        </Box>
+      <main className='flex flex-col w-full h-full'>
+          <nav className='bg-accent flex justify-between items-center p-2'>
+            <div className='flex items-center'>
+              <IconButton onClick={handleBack} sx={{ color: '#F9FAFB', mr: 1 }}>
+                <ArrowBack />
+              </IconButton>
+              
+              <StyledTabs value={tabValue} onChange={handleChange}>
+                {tabs.map((tab, index) => (
+                  <StyledTab key={index} icon={tab.icon} label={tab.label} />
+                ))}
+              </StyledTabs>
+            </div>
 
-        <Box sx={{ display: 'flex', alignItems: 'center', pr: 2 }}>
-          {isRunning ? (
-            <IconButton onClick={handleStopProject} color="error">
-              <Stop />
-            </IconButton>
-          ) : (
-            <IconButton onClick={handleRunProject} color="success">
-              <PlayArrow />
-            </IconButton>
+            <div className='flex items-center'>
+              {isRunning ? (
+                <IconButton onClick={handleStopProject} color="error">
+                  <Stop />
+                </IconButton>
+              ) : (
+                <IconButton onClick={handleRunProject} color="success">
+                  <div className='bg-black/10 rounded-full'>
+                    <PlayArrow fontSize='large' className='text-green-500'/>
+                  </div>
+                </IconButton>
+              )}
+            </div>
+          </nav>
+
+          {tabValue === 0 && (
+            <TabPanel>
+              <Editor
+                projects={projects}
+                setProjects={setProjects}
+                currentProjectId={currentProjectId || ''}
+                files={files}
+                activeFile={activeFile}
+                setActiveFile={setActiveFile}
+                setFiles={setFiles}
+              />
+            </TabPanel>
           )}
-        </Box>
-      </Box>
 
-      {tabValue === 0 && (
-        <TabPanel>
-          <Editor
-            projects={projects}
-            setProjects={setProjects}
-            currentProjectId={currentProjectId || ''}
-            files={files}
-            activeFile={activeFile}
-            setActiveFile={setActiveFile}
-            setFiles={setFiles}
-          />
-        </TabPanel>
-      )}
-
-      {tabValue === 1 && (
-        <TabPanel>
-          {port ? (
-            <PreviewFrame port={port} />
-          ) : (
-            <div style={{ color: '#ccc' }}>Waiting for preview to become available...</div>
+          {tabValue === 1 && (
+            <TabPanel>
+              {port ? (
+                <PreviewFrame port={port} />
+              ) : (
+                <div className='text-black/40'>Waiting for preview to become available...</div>
+              )}
+            </TabPanel>
           )}
-        </TabPanel>
-      )}
 
-      {tabValue === 2 && (
-        <TabPanel
-          sx={{
-            p: 0,
-            height: '100%',
-            backgroundColor: '#000',
-            color: '#fff',
-            fontFamily: 'monospace',
-            overflow: 'auto',
-            whiteSpace: 'pre-wrap',
-          }}
-        >
-          {output.map((line, i) => (
-            <div key={i}>{line}</div>
-          ))}
-        </TabPanel>
-      )}
-    </Box>
+          {tabValue === 2 && (
+            <TabPanel
+              sx={{
+                p: 0,
+                height: '100%',
+                backgroundColor: '#000',
+                color: '#fff',
+                fontFamily: 'monospace',
+                overflow: 'auto',
+                whiteSpace: 'pre-wrap',
+              }}
+            >
+              {output.map((line, i) => (
+                <div key={i}>{line}</div>
+              ))}
+            </TabPanel>
+          )}          
+      </main>
+
+
   );
 };
 

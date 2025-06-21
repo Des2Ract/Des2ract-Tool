@@ -30,14 +30,17 @@ const Editor: FC<EditorProps> = ({ projects, setProjects, currentProjectId, file
   );
 
   return (
-    <div style={{ display: 'flex', height: 'calc(100vh - 150px)', background: '#1e1e1e' }}>
+    <div style={{ 
+        display: 'flex', 
+        height: 'calc(100vh - 150px)', 
+      }} className='bg-sidebar rounded-md'>
       <FileExplorer files={files} setActiveFile={setActiveFile} />
       <div style={{ flex: 1 }}>
         <MonacoEditor
           width="100%"
           height="100%"
           language="javascript"
-          theme="vs-dark"
+          theme="vs-light"
           value={activeFile ? files[activeFile] : ''}
           onChange={debouncedHandleEditorChange}
           options={{ automaticLayout: true }}

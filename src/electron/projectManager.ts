@@ -62,6 +62,7 @@ export function initProjectManager(mainWindow: BrowserWindow) {
   }
 
   ipcMain.handle("get-projects", async () => {
+    
     const projectDirs = fs
       .readdirSync(PROJECTS_DIR, { withFileTypes: true })
       .filter((dirent) => dirent.isDirectory())
