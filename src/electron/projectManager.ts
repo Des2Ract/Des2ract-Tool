@@ -42,7 +42,7 @@ export function initProjectManager(mainWindow: BrowserWindow) {
     const entries = fs.readdirSync(dir, { withFileTypes: true });
 
     for (const entry of entries) {
-      if (entry.name === "node_modules") continue; // Exclude node_modules
+      if (entry.name === "node_modules" || entry.name.startsWith(".")) continue; // Exclude node_modules
 
       const fullPath = path.join(dir, entry.name);
       const relativePath = path
@@ -115,14 +115,13 @@ export function initProjectManager(mainWindow: BrowserWindow) {
     return project;
   });
 
-  ipcMain.handle("run-project", async (_, { projectId, command }) => {
-    const projectPath = path.join(PROJECTS_DIR, projectId);
+  ipcMain.handle("run-project", async (_, projectId: string, projectPath: string) => {
 
     if (activeProcesses[projectId]) {
       activeProcesses[projectId].kill();
     }
 
-    const proc = spawn(command, {
+    const proc = spawn('npm i && npm run dev -- --port 3000', {
       cwd: projectPath,
       shell: true,
       stdio: ["pipe", "pipe", "pipe"],
@@ -173,6 +172,11 @@ export function initProjectManager(mainWindow: BrowserWindow) {
     const files = readAllFilesRecursively(projectPath, projectPath);
 
     return { files, projectPath };
+  });
+  
+  ipcMain.handle("read-project-files", (_, { projectPath }) => {
+    const files = readAllFilesRecursively(projectPath, projectPath);
+    return files;
   });
 
   ipcMain.handle("get-assets-path", () => {

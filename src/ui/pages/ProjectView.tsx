@@ -1,22 +1,16 @@
-import { FC, useEffect, useState } from 'react';
-import { styled } from '@mui/material/styles';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+import { Code, Devices, PlayArrow, Stop, Terminal } from '@mui/icons-material';
+import ArrowBack from '@mui/icons-material/ArrowBack';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
-import PreviewFrame from '../components/PreviewFrame';
+import { styled } from '@mui/material/styles';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import { FC, useEffect, useState } from 'react';
 import Editor from '../components/Editor';
-import { BorderBottom, Code, Devices, PlayArrow, Stop, Terminal } from '@mui/icons-material';
-import ArrowBack from '@mui/icons-material/ArrowBack';
+import PreviewFrame from '../components/PreviewFrame';
 
 interface ProjectViewProps {
-  projects: Project[];
-  setProjects: (projects: Project[]) => void;
-  currentProjectId: string;
-  files: { [key: string]: string };
-  activeFile: string | null;
-  setActiveFile: (file: string) => void;
-  setFiles: (files: { [key: string]: string }) => void;
+  project: Project;
   onReturnSelect: () => void;
 }
 
@@ -64,19 +58,29 @@ const TabPanel = styled(Box)(({ theme }) => ({
 }));
 
 const ProjectView: FC<ProjectViewProps> = ({
-  projects,
-  setProjects,
-  currentProjectId,
-  files,
-  activeFile,
-  setActiveFile,
-  setFiles,
+  project,
   onReturnSelect
-}) => {
+}) => {  
   const [tabValue, setTabValue] = useState<number>(0);
   const [isRunning, setIsRunning] = useState(false);
   const [output, setOutput] = useState<string[]>([]);
   const [port, setPort] = useState<number | null>(null);
+
+  const [files, setFiles] = useState<{ [key: string]: string }>({});
+  const [activeFile, setActiveFile] = useState<string | null>(null);
+
+  const currentProjectId = project.id;
+
+  useEffect(() => {
+    const loadFiles = async () => {
+      const files = await window.electron.readAllFilesRecursively(project.path!);
+      console.log(files);
+      
+      setFiles(files);
+      setActiveFile(Object.keys(files)[0]);
+    };
+    loadFiles();
+  }, []);
 
   useEffect(() => {
     const handleOutput = ({ projectId: pid, data }: { projectId: string; data: string }) => {
@@ -102,7 +106,7 @@ const ProjectView: FC<ProjectViewProps> = ({
   const handleRunProject = () => {
     setOutput([]);
     setIsRunning(true);
-    window.electron.runProject(currentProjectId, 'npm i && npm run dev -- --port 3000');
+    window.electron.runProject(project.id, project.path!);
   };
 
   const handleStopProject = () => {
@@ -117,8 +121,8 @@ const ProjectView: FC<ProjectViewProps> = ({
   };
 
   const handleBack = async () => {
-  if (isRunning) await handleStopProject();
-  onReturnSelect();
+    if (isRunning) await handleStopProject();
+    onReturnSelect();
   };
 
   const tabs = [
@@ -160,9 +164,7 @@ const ProjectView: FC<ProjectViewProps> = ({
           {tabValue === 0 && (
             <TabPanel>
               <Editor
-                projects={projects}
-                setProjects={setProjects}
-                currentProjectId={currentProjectId || ''}
+                project={project}
                 files={files}
                 activeFile={activeFile}
                 setActiveFile={setActiveFile}

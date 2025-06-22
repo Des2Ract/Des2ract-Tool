@@ -1,32 +1,35 @@
-import { FC, useEffect, useCallback } from 'react';
+import { FC, useEffect, useCallback, useState } from 'react';
 import MonacoEditor from 'react-monaco-editor';
 import FileExplorer from './FileExplorer';
 import debounce from 'lodash/debounce'; // Or implement your own debounce
 
 interface EditorProps {
-  projects: Project[];
-  setProjects: (projects: Project[]) => void;
-  currentProjectId: string;
+  project: Project;
   files: { [key: string]: string };
+  setFiles: (files: { [key: string]: string }) => void;
   activeFile: string | null;
   setActiveFile: (file: string) => void;
-  setFiles: (files: { [key: string]: string }) => void;
 }
 
-const Editor: FC<EditorProps> = ({ projects, setProjects, currentProjectId, files, activeFile, setActiveFile, setFiles }) => {
-  const project = projects.find(p => p.id === currentProjectId) as Project;
+const Editor: FC<EditorProps> = ({ 
+  project, 
+  activeFile, 
+  setActiveFile,
+  files,
+  setFiles
+}) => {
+  
 
   // Debounced handler to limit state updates
   const debouncedHandleEditorChange = useCallback(
     debounce(async (value: string | undefined) => {
       if (activeFile && value !== undefined) {
         const updatedFiles = { ...files, [activeFile]: value };
-        setProjects(projects.map(p => p.id === currentProjectId ? { ...p, files: updatedFiles } : p));
         setFiles(updatedFiles);
         await window.electron.saveProject(project, { [activeFile]: value });
       }
     }, 300), // Adjust delay as needed
-    [activeFile, files, projects, currentProjectId, project, setFiles, setProjects]
+    [activeFile, files,project, setFiles]
   );
 
   return (

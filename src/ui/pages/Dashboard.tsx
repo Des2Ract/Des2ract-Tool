@@ -112,12 +112,6 @@ const ProjectDetails = styled.div`
   }
 `;
 
-interface Project {
-  id: string;
-  name: string;
-  figmaLink: string;
-  files: { [key: string]: string };
-}
 
 interface DashboardProps {
   projects: Project[];
@@ -173,13 +167,14 @@ const Dashboard: FC<DashboardProps> = ({ projects, onAddProject, onProjectSelect
             ) :
             <ProjectList>
               {projects.map(project => (
-                <ProjectItem key={project.id} onClick={() => onProjectSelect(project.id)}>
+                <ProjectItem key={project.id} onClick={() => onProjectSelect(project.name)}>
                   <ProjectName title={project.name}>
                     {project.name}
                   </ProjectName>
                   <ProjectDetails>
                     <p>Figma: {project.figmaLink ? 'Linked' : 'Not Linked'}</p>
-                    <p>Files: {Object.keys(project.files).length}</p>
+                    <p>Created At: { (new Date(project.creationDate ?? new Date())).toLocaleDateString() }</p>
+                    {/* <p>Files: {Object.keys(project.files).length}</p> */}
                   </ProjectDetails>
                 </ProjectItem>
               ))}

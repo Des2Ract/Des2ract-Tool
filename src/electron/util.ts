@@ -27,7 +27,7 @@ export function sendToWindow<Key extends keyof EventPayloadMapping>(
 export interface EventPayloadMapping {
   "get-projects": Project[];
   "save-project": { project: Project; files: { [key: string]: string } };
-  "run-project": { projectId: string; command: string };
+  "run-project": any;
   "stop-project": string;
   "project-output": { projectId: string; data: string };
 }
