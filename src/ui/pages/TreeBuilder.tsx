@@ -48,6 +48,7 @@ export default function TreebuilderResultsView({
                 
                 let responseJson = response.data;
                 setJson(responseJson.data[0]);
+                console.log(responseJson.data[0]);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
