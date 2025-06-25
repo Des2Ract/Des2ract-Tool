@@ -66,11 +66,16 @@ export default function ProjectCreationPage({
     }
 
     const generateReactCode = async () => {
-        const response = await axios.post('http://localhost:3000/files', 
-            { designTree }, 
+        
+        const response = await axios.post('https://mahmoudossama10-Figma2React.hf.space/generate-react', 
+            { ...designTree }, 
         );
 
         const files = response.data as ReactFile[];
+        console.log(files[0].content );
+        console.log(files[0].content.includes("<image"));
+        console.log(files[0].content.includes("<image>"));
+
         setGeneratedFiles(files);
         setPhase("User Preference");
     }
