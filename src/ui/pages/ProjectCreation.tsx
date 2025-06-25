@@ -72,10 +72,6 @@ export default function ProjectCreationPage({
         );
 
         const files = response.data as ReactFile[];
-        console.log(files[0].content );
-        console.log(files[0].content.includes("<image"));
-        console.log(files[0].content.includes("<image>"));
-
         setGeneratedFiles(files);
         setPhase("User Preference");
     }

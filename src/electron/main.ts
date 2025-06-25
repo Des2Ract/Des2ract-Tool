@@ -61,7 +61,7 @@ ipcMain.on('run-command', async (event, folderPath, projectName, generatedFiles 
   }    
   
   const commandsList = [
-      `npx create-next-app "${projectName}" --javascript --tailwind --no-eslint --turbopack --use-npm --app --no-src-dir --import-alias="@/*"`,
+      // `npx create-next-app "${projectName}" --javascript --tailwind --no-eslint --turbopack --use-npm --app --no-src-dir --import-alias="@/*"`,
       `(cd ./${projectName} && npm install)`,
       `npx shadcn@latest init --template "next" --base-color "neutral" -y -f`,
       `xcopy "${componentsFolder}" "./app/components" /E /I /Y /H`,

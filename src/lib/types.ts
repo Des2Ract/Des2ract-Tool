@@ -18,6 +18,7 @@ export type Node = {
   type: string;
   tag: string;
   height: number;
+  layout?: string;
   id: string;
   depth: string;
   characters: string;

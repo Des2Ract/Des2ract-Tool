@@ -73,11 +73,14 @@ export default function SemanticAssignerView({
         const fetchData = async () => {
             setIsLoading(true);
             try {  
+                console.log(pageTree);
+                
                 const response = await axios.post('https://AOZ2025-Semantic-Assigner.hf.space/predict', pageTree, {
                     headers: { 'Content-Type': 'application/json' },
                 })
                 
-                setJson(response.data);
+                setJson(response.data);                
+                
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -88,7 +91,7 @@ export default function SemanticAssignerView({
     }, [pageTree]);    
     
     const updateTagInJson = (node: any, id: string, newTag: string): TreeBuilderNode => {
-        if (node.node.depth === id) {
+        if (node.node.id === id) {
             return { ...node, tag: newTag };
         } else if (node && typeof node === 'object' && 'children' in node) {
             return { ...node, children: node.children.map((child: any) => updateTagInJson(child, id, newTag)) };
@@ -103,8 +106,8 @@ export default function SemanticAssignerView({
 
     const editFocusGroup = () => {
         if (!focusElement) return;
-        setTagMods({ ...tagMods, [focusElement.node.depth]: selectedTag });
-        changeTagInJson(focusElement.node.depth, selectedTag);
+        setTagMods({ ...tagMods, [focusElement.node.id]: selectedTag });
+        changeTagInJson(focusElement.node.id, selectedTag);
         setOpen(false);
         setSelectedTag('');
     }

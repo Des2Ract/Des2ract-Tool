@@ -107,6 +107,11 @@ const App: FC = () => {
             setCurrentView( screenNames.indexOf('Add Project') ); 
             setProjectUrl(''); 
           }} 
+          onDeleteProject={(projectId) => {
+            const updatedProjects = projects.filter((project) => project.id !== projectId);
+            localStorage.setItem('projects', JSON.stringify(updatedProjects));
+            setProjects(updatedProjects);
+          }}
           onProjectSelect={handleProjectSelect} 
         />
       )}

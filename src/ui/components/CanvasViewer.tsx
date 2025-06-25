@@ -1,14 +1,19 @@
 import { GroupItem } from "@/lib/types";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Stage, Layer, Image as KonvaImage, Rect } from "react-konva";
 import useImage from "use-image";
 
 
 export default function CanvasViewer ({ svgString, boxes } : { svgString: string, boxes: { x: number, y: number, w: number, h: number, color?: string}[] }) {
     const stageRef = useRef(null);
-    const [image] = useImage(`data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`);
+    const [image] = useImage(
+    useMemo(
+      () => `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`,
+      [svgString]
+    )
+  );
 
-    const handleWheel = (e: any) => {
+    const handleWheel = useCallback((e: any) => {
         e.evt.preventDefault();
 
         const stage : any = stageRef.current;
@@ -35,7 +40,30 @@ export default function CanvasViewer ({ svgString, boxes } : { svgString: string
         stage.position(newPos);
 
         stage.batchDraw();
-    };
+    }, []);
+
+    const renderBoxes = useMemo(
+        () =>
+        boxes.map((r, i) => (
+            <Rect
+            key={i}
+            x={r.x}
+            y={r.y}
+            width={r.w}
+            height={r.h}
+            stroke="blue"
+            strokeWidth={2}
+            dash={[6, 4]}
+            cornerRadius={4}
+            fill={"color" in r ? r.color! : "rgba(255, 0, 0, 0.5)"}
+            shadowColor="black"
+            shadowBlur={4}
+            shadowOffset={{ x: 2, y: 2 }}
+            shadowOpacity={0.3}
+            />
+        )),
+        [boxes]
+    );
 
     return (
         <div className="w-full h-full overflow-hidden">
@@ -52,24 +80,7 @@ export default function CanvasViewer ({ svgString, boxes } : { svgString: string
             >
             <Layer clearBeforeDraw>
                 {image && <KonvaImage image={image} />}
-                {boxes.map((r, i) => (
-                <Rect
-                    key={i}
-                    x={r.x}
-                    y={r.y}
-                    width={r.w}
-                    height={r.h}
-                    stroke="blue"
-                    strokeWidth={2}
-                    dash={[6, 4]} // dashed border
-                    cornerRadius={4} // rounded corners
-                    fill={ "color" in r ? r.color : "rgba(255, 0, 0, 0.5)" } // light red transparent fill
-                    shadowColor="black"
-                    shadowBlur={4}
-                    shadowOffset={{ x: 2, y: 2 }}
-                    shadowOpacity={0.3}
-                />
-                ))}
+                { renderBoxes }
             </Layer>
             </Stage>
         </div>

@@ -4,6 +4,8 @@ import DefaultSidebar from '../components/sidebars/dashboard-sidebar';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { AvatarFallback } from '@/components/ui/avatar';
 import React from 'react';
+import { Button } from '@/components/ui/button';
+import { Trash2 } from 'lucide-react';
 
 // --- Global Styles for a cohesive and modern look ---
 const GlobalStyle = createGlobalStyle`
@@ -117,9 +119,11 @@ interface DashboardProps {
   projects: Project[];
   onAddProject: () => void;
   onProjectSelect: (projectId: string) => void;
+  onDeleteProject: (projectId: string) => void;
 }
 
-const Dashboard: FC<DashboardProps> = ({ projects, onAddProject, onProjectSelect }) => {
+const Dashboard: FC<DashboardProps> = ({ projects, onAddProject, onDeleteProject, onProjectSelect }) => {
+
   return (
     <>
       <DashboardWrapper className='w-full'>
@@ -174,6 +178,14 @@ const Dashboard: FC<DashboardProps> = ({ projects, onAddProject, onProjectSelect
                   <ProjectDetails>
                     <p>Figma: {project.figmaLink ? 'Linked' : 'Not Linked'}</p>
                     <p>Created At: { (new Date(project.creationDate ?? new Date())).toLocaleDateString() }</p>
+                    <div className='w-full flex items-center justify-end'>
+                      <Button 
+                        className='bg-transparent hover:bg-black/10 cursor-pointer border-2 border-red-500'
+                        onClick={(e) => { onDeleteProject(project.id); e.preventDefault(); e.stopPropagation() }}
+                      > 
+                        <Trash2 className='text-red-500'/> 
+                      </Button>
+                    </div>
                     {/* <p>Files: {Object.keys(project.files).length}</p> */}
                   </ProjectDetails>
                 </ProjectItem>

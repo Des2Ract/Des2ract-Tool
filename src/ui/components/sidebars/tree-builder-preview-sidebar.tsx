@@ -37,7 +37,8 @@ export default function TreeBuilderResultsSidebar({
 
     const convertTree = (node: TreeBuilderNode, depth: number = 0, index: number = 0) : TreeDataItem => ({
         id: `${node.name}/${depth}/${index}`,
-        name: node.name === "TREE BUILDER GROUP" ? "Group" : (`${node.name.slice(0, 15)} [${node.node.type}]`),
+        // name: node.name === "TREE BUILDER GROUP" ? "Group" : (`${node.name.slice(0, 15)} [${node.node.type}]`),
+        name: `${node.name == "TREE BUILDER GROUP" ? "Group" : node.name} [ ${(node.node.layout ?? "") == "ROWS" ? "Rows" : "Columns"} ]`,
         children: node.node.type === "TEXT" ? [ { id: node.name + depth + index + "TEXT", name: node.node.characters.slice(0, 15) } ] 
         : node.children.map((child, index) => convertTree(child, depth + 1, index)),
         onClick: () => { changeSelection(`${node.name}/${depth}/${index}`, { x: node.node.x, y: node.node.y, w: node.node.width, h: node.node.height }) }

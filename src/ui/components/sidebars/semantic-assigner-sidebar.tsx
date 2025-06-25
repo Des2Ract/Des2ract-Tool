@@ -44,7 +44,7 @@ export default function SemanticAssignerSidebar({
         onClick: () => { changeSelection(node.node.depth, node) }
     });
 
-    const viewData = useMemo(() => projectTree ? convertTree(projectTree) : null, [projectTree, selected, editMode]);
+    const viewData = useMemo(() => projectTree ? convertTree(projectTree) : null, [projectTree, selected, editMode]);    
 
     return (
         <div className="mr-5 w-fit">
