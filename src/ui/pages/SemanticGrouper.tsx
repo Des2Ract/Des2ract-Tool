@@ -61,8 +61,6 @@ export default function SemanticGrouperView({
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                console.log(pageTree);
-                
                 const response = await axios.post(
                     "https://kareemalaa1-semantic-grouper.hf.space/api/enhanced",
                     // "https://kareemalaa1-semantic-grouper.hf.space/api",

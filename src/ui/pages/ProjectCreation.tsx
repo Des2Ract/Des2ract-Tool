@@ -49,10 +49,7 @@ export default function ProjectCreationPage({
     designTree: any,
     figmaLink: string,
     onContinue: (projectName: string) => void
-}) {
-
-    console.log(designTree);
-    
+}) {    
     const [ phase, setPhase ] = useState<Phase>("Generating Code");
     const [ loading, setIsLoading ] = useState<boolean>(false);
     const [ generatedFiles, setGeneratedFiles ] = useState<ReactFile[]>([]);
@@ -83,9 +80,7 @@ export default function ProjectCreationPage({
         const updateLogs = (data: string) => {
             if (data.trim() == "Done") {
                setPhase(prev => "Finished");
-               setLogs(prev => [...prev, "Done :)"])
-               console.log("ok");
-               
+               setLogs(prev => [...prev, "Done :)"])               
             } else {
                 setLogs(prev => [...prev, data.trim()])    
             }

@@ -73,9 +73,7 @@ const ProjectView: FC<ProjectViewProps> = ({
 
   useEffect(() => {
     const loadFiles = async () => {
-      const files = await window.electron.readAllFilesRecursively(project.path!);
-      console.log(files);
-      
+      const files = await window.electron.readAllFilesRecursively(project.path!);      
       setFiles(files);
       setActiveFile(Object.keys(files)[0]);
     };

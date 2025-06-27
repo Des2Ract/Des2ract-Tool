@@ -31,7 +31,6 @@ export function initProjectManager(mainWindow: BrowserWindow) {
   if (!fs.existsSync(PROJECTS_DIR)) {
     fs.mkdirSync(PROJECTS_DIR, { recursive: true });
   }
-  console.log(`Projects directory: ${PROJECTS_DIR}`);
 
   function readAllFilesRecursively(
     dir: string,
@@ -151,12 +150,10 @@ export function initProjectManager(mainWindow: BrowserWindow) {
   ipcMain.handle("stop-project", (_, projectId) => {
     const proc = activeProcesses[projectId];
     if (proc) {
-      console.log(`Stopping process for project ${projectId}`);
       treeKill(proc.pid as number, "SIGTERM");
       delete activeProcesses[projectId];
       return true;
     }
-    console.log(`No process found for project ${projectId}`);
     return false;
   });
 
