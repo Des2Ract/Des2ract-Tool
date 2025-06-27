@@ -1,230 +1,317 @@
 import React from 'react';
-
 export default function GeneratedPage() {
   return (
     <div 
       className="relative overflow-auto mx-auto"
       style={{ 
-        width: '1440px',
-        height: '5315px',
+        width: '1280px',
+        height: '2980px',
         backgroundColor: 'rgba(255, 255, 255, 1)'
       }}
     >
-  <div style={{ position: "absolute", left: "20px", top: "32px", width: "1440px", height: "5315px" }}>
-    <div style={{ position: "absolute", left: "107.3369140625px", top: "0px", width: "1292.6630859375px", height: "56px" }}>
-      <div style={{ position: "absolute", left: "0px", top: "4px", width: "182px", height: "48px", fontFamily: "Inter, sans-serif", fontSize: "36px", fontWeight: "600", textAlign: "center", lineHeight: "48px", color: "rgba(38,38,38,1)" }}>
-        ConsultUs
-      </div>
-      <div style={{ position: "absolute", left: "1032.6630859375px", top: "0px", width: "260px", height: "56px", backgroundColor: "rgba(1,149,247,1)", borderRadius: "8px" }}>
-        <div style={{ position: "absolute", left: "16px", top: "8px", width: "228px", height: "40px", fontFamily: "Inter, sans-serif", fontSize: "16px", fontWeight: "600", textAlign: "center", lineHeight: "24px", color: "rgba(255,255,255,1)" }}>
-          BOOK A FREE ONBOARDING
+  <div style={{ position: "absolute", left: "0px", top: "0px", width: "1280px", height: "2980px" }}>
+    <div style={{ position: "absolute", left: "0px", top: "0px", width: "1280px", height: "700px", backgroundColor: "rgba(8,8,8,1)" }}>
+      <div style={{ position: "absolute", left: "85px", top: "0px", width: "1110px", height: "70px", backgroundColor: "rgba(27,27,27,1)" }}>
+        <div style={{ position: "absolute", left: "187.5px", top: "26px", width: "34px", height: "18px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "14px", fontWeight: "400", textAlign: "left", lineHeight: "18.19999885559082px", color: "rgba(156,156,156,1)" }}>
+          Home
         </div>
-      </div>
-    </div>
-    <div style={{ position: "absolute", left: "0px", top: "148px", width: "1440px", height: "176px", fontFamily: "Inter, sans-serif", fontSize: "64px", fontWeight: "600", textAlign: "center", lineHeight: "88px" }}>
-      We’re here to
-gurantee your success
-    </div>
-    <div style={{ position: "absolute", left: "80px", top: "594px", width: "1280px", height: "388px", backgroundColor: "rgba(255,255,255,1)" }}>
-      <div style={{ position: "absolute", left: "77px", top: "48px", width: "1126px", height: "240px", fontFamily: "Inter, sans-serif", fontSize: "36px", fontWeight: "400", textAlign: "left", lineHeight: "48px", color: "rgba(255,255,255,1)" }}>
-        ConsultUs provides consulting services that help business owners and leaders build a more valuable business. We worked with their founder to build a professional, modern site that follows the StoryBrand framework to clearly communicates the value it adds to potential clients
-      </div>
-    </div>
-    <div style={{ position: "absolute", left: "0px", top: "1253px", width: "1440px", height: "176px", fontFamily: "Inter, sans-serif", fontSize: "64px", fontWeight: "600", textAlign: "center", lineHeight: "88px" }}>
-      We’re here for you
-no matter where you are
-    </div>
-    <div style={{ position: "absolute", left: "80px", top: "1573px", width: "887px", height: "88px", fontFamily: "Inter, sans-serif", fontSize: "64px", fontWeight: "600", textAlign: "left", lineHeight: "88px", color: "rgba(38,38,38,1)" }}>
-      Our Mission
-    </div>
-    <div style={{ position: "absolute", left: "80px", top: "1693px", width: "1280px", height: "336px" }}>
-      <div style={{ position: "absolute", left: "0px", top: "0px", width: "1280px", height: "64px" }}>
-        <div style={{ position: "absolute", left: "0px", top: "0px", width: "320px", height: "32px", fontFamily: "Inter, sans-serif", fontSize: "24px", fontWeight: "600", textAlign: "left", lineHeight: "32px", color: "rgba(38,38,38,1)" }}>
-          Unmatched service
-        </div>
-        <div style={{ position: "absolute", left: "376px", top: "0px", width: "904px", height: "64px", fontFamily: "Inter, sans-serif", fontSize: "24px", fontWeight: "400", textAlign: "left", lineHeight: "32px", color: "rgba(93,95,97,1)" }}>
-          Support corporate clients and financial investors with their growth strategy and international development.
-        </div>
-      </div>
-      <div style={{ position: "absolute", left: "0px", top: "80px", width: "1280px", height: "96px" }}>
-        <div style={{ position: "absolute", left: "0px", top: "0px", width: "320px", height: "32px", fontFamily: "Inter, sans-serif", fontSize: "24px", fontWeight: "600", textAlign: "left", lineHeight: "32px", color: "rgba(38,38,38,1)" }}>
-          Specific
-        </div>
-        <div style={{ position: "absolute", left: "376px", top: "0px", width: "904px", height: "96px", fontFamily: "Inter, sans-serif", fontSize: "24px", fontWeight: "400", textAlign: "left", lineHeight: "32px", color: "rgba(93,95,97,1)" }}>
-          ConsultUs’ core expertise lies in the ability to support our clients in understanding, analysing and executing commercial and investment strategies in specific markets. 
-        </div>
-      </div>
-      <div style={{ position: "absolute", left: "0px", top: "192px", width: "1280px", height: "96px" }}>
-        <div style={{ position: "absolute", left: "0px", top: "0px", width: "320px", height: "32px", fontFamily: "Inter, sans-serif", fontSize: "24px", fontWeight: "600", textAlign: "left", lineHeight: "32px", color: "rgba(38,38,38,1)" }}>
-          Experience
-        </div>
-        <div style={{ position: "absolute", left: "376px", top: "0px", width: "904px", height: "96px", fontFamily: "Inter, sans-serif", fontSize: "24px", fontWeight: "400", textAlign: "left", lineHeight: "32px", color: "rgba(93,95,97,1)" }}>
-          Experience in working with and assisting a wide range of clients from international corporations to small/medium-sized businesses, from large corporate debt providers to mid-market private equity investors. 
-        </div>
-      </div>
-      <div style={{ position: "absolute", left: "0px", top: "304px", width: "1280px", height: "32px" }}>
-        <div style={{ position: "absolute", left: "0px", top: "0px", width: "320px", height: "32px", fontFamily: "Inter, sans-serif", fontSize: "24px", fontWeight: "600", textAlign: "left", lineHeight: "32px", color: "rgba(38,38,38,1)" }}>
-          Technology
-        </div>
-        <div style={{ position: "absolute", left: "376px", top: "0px", width: "904px", height: "32px", fontFamily: "Inter, sans-serif", fontSize: "24px", fontWeight: "400", textAlign: "left", lineHeight: "32px", color: "rgba(93,95,97,1)" }}>
-          The best combination of technology and people.
-        </div>
-      </div>
-    </div>
-    <div style={{ position: "absolute", left: "80px", top: "2133px", width: "887px", height: "88px", fontFamily: "Inter, sans-serif", fontSize: "64px", fontWeight: "600", textAlign: "left", lineHeight: "88px", color: "rgba(38,38,38,1)" }}>
-      Our Commitment
-    </div>
-    <div style={{ position: "absolute", left: "80px", top: "2253px", width: "1280px", height: "352px" }}>
-      <div style={{ position: "absolute", left: "0px", top: "0px", width: "1280px", height: "128px" }}>
-        <div style={{ position: "absolute", left: "0px", top: "0px", width: "320px", height: "32px", fontFamily: "Inter, sans-serif", fontSize: "24px", fontWeight: "600", textAlign: "left", lineHeight: "32px", color: "rgba(38,38,38,1)" }}>
-          Ethics
-        </div>
-        <div style={{ position: "absolute", left: "376px", top: "0px", width: "904px", height: "128px", fontFamily: "Inter, sans-serif", fontSize: "24px", fontWeight: "400", textAlign: "left", lineHeight: "32px", color: "rgba(93,95,97,1)" }}>
-          Ethics for ConsultUs means ensuring our customers the confidentiality and uniqueness of the service they are provided. A client must be reassured by the fact that the service provided to them is made-to-measure and will not be recycled for their competitors.
-        </div>
-      </div>
-      <div style={{ position: "absolute", left: "0px", top: "144px", width: "1280px", height: "96px" }}>
-        <div style={{ position: "absolute", left: "0px", top: "0px", width: "320px", height: "32px", fontFamily: "Inter, sans-serif", fontSize: "24px", fontWeight: "600", textAlign: "left", lineHeight: "32px", color: "rgba(38,38,38,1)" }}>
-          Quality
-        </div>
-        <div style={{ position: "absolute", left: "376px", top: "0px", width: "904px", height: "96px", fontFamily: "Inter, sans-serif", fontSize: "24px", fontWeight: "400", textAlign: "left", lineHeight: "32px", color: "rgba(93,95,97,1)" }}>
-          ConsultUs is committed to ensuring that our advice and recommendations are based on the best combination of methods, information research, creativity and internal quality assurance. 
-        </div>
-      </div>
-      <div style={{ position: "absolute", left: "0px", top: "256px", width: "1280px", height: "96px" }}>
-        <div style={{ position: "absolute", left: "0px", top: "0px", width: "320px", height: "32px", fontFamily: "Inter, sans-serif", fontSize: "24px", fontWeight: "600", textAlign: "left", lineHeight: "32px", color: "rgba(38,38,38,1)" }}>
-          Continuity
-        </div>
-        <div style={{ position: "absolute", left: "376px", top: "0px", width: "904px", height: "96px", fontFamily: "Inter, sans-serif", fontSize: "24px", fontWeight: "400", textAlign: "left", lineHeight: "32px", color: "rgba(93,95,97,1)" }}>
-          ConsultUs considers that the continuity of relations on the long term with its clients is the guarantee of the satisfaction of these and the quality of the services provided.
-        </div>
-      </div>
-    </div>
-    <div style={{ position: "absolute", left: "0px", top: "2669px", width: "1440px", height: "88px", fontFamily: "Inter, sans-serif", fontSize: "64px", fontWeight: "600", textAlign: "center", lineHeight: "88px" }}>
-      Our Success Team
-    </div>
-    <div style={{ position: "absolute", left: "126px", top: "2785px", width: "1188px", height: "452px" }}>
-      <img 
-        src="https://s3-alpha-sig.figma.com/img/49c4/bdac/48b0aade6e25f82de9964df4b14fb221?Expires=1751846400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=hGrXGeQ5IFx~mNmsEbUF0piL-vaq3JupQCmW7WXIsCxoQTTlh9NAsXIUaSCloIhEAFH0y7aWZrvUdOwWqdum~wvUSith8puUwHTE1KHiPayyYx657lxqYrXRXpzYi6SYbS2HPZtoaDQQFA~PFPB~V-4c~-BlbFQ-R4eDtqCODxV4QEzMShwzUt3wuk0BBEkEmcHVOJ6rOvEca-IRM6UuLuG2e77IoNeJybVA7xhc76UsL33JqoGHYxmHjK4~wjOBciutFS3NSFvf11dlYO3vvhfm3WepjMFS9lbxg5IYgvE2J~HGFHW8dkgpSlfVx8i2MQxsq734xZLpEERJDxX8Ig__" 
-        alt="IMG"
-        style={{ position: "absolute", left: "0px", top: "0px", width: "380px", height: "452px", borderRadius: "16px" }}
-      />
-      <img 
-        src="https://s3-alpha-sig.figma.com/img/6f9f/8f5f/fc45332596b274a52f0639831ded9655?Expires=1751846400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=aihH6Z9~h5gdkiaSyUvoLMnTZ4k8~kDgNVj7mqgcMwOV3zWu0z0SOaS0~K~fgoEXYImAR-1S0aUOIXJYrfn4HxdP8ScgH4aVRlsVyt3pbjMry9VevppgesMWwNe6tayT1kKWfQ3AsHzfCvXO8P1ynihMy~UO0VMWUf73D14dbAK80XbJcuG~3qesQNCa8LfyEPBE1JLv-dZATS-n5CV7CW04NDhd6Q73IdK3BxipO87fAhGs0qgcswDe2lB4gdHgdWAUxDWpniY897U-ur921dKMfGtYlpJRiooXIPpk2cLv68DcZmJO0pOZBrJuQWradNu3mgSSxqyVuRFtu4f2cA__" 
-        alt="IMG"
-        style={{ position: "absolute", left: "404px", top: "0px", width: "380px", height: "452px", borderRadius: "16px" }}
-      />
-      <img 
-        src="https://s3-alpha-sig.figma.com/img/1d79/1672/869eabbd244aa1990bc4868bd7a42dab?Expires=1751846400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=hyI3GFUARX8EUxPJBGLcNaI5WLm6Xbu5buGVlZK645zWpeJ00SQwTShn7loPodsyqhee2-1PpwmMYOle1JJfBUCk3b1bMa2oRGI-CYEcER8tyjxkyO5eV-L5Hur3lV2NUn3~aMpafHDfS3ghuvuBcvZAascreHO0GhXEL6xQm330Sm3TCdkVzz58P6yOKhV~RJOuPGsXnE1nL9sb369YDB2jZejGf2ld2Zj2sM7irLP0179F0RuwJjv7~bovwRnz9ajAupmiSvSe0x0mUe80HQZIOhMplGQpSUp3VeUjmSfS-l1ziYgBxY3F66i5TZ7VW0F~ynXH0FMRiFhobfp0ww__" 
-        alt="IMG"
-        style={{ position: "absolute", left: "808px", top: "0px", width: "380px", height: "452px", borderRadius: "16px" }}
-      />
-    </div>
-    <div style={{ position: "absolute", left: "126px", top: "3261px", width: "1188px", height: "48px" }}>
-      <div style={{ position: "absolute", left: "0px", top: "0px", width: "380px", height: "48px", fontFamily: "Inter, sans-serif", fontSize: "36px", fontWeight: "600", textAlign: "center", lineHeight: "48px", color: "rgba(38,38,38,1)" }}>
-        Jenny Wilson
-      </div>
-      <div style={{ position: "absolute", left: "404px", top: "0px", width: "380px", height: "48px", fontFamily: "Inter, sans-serif", fontSize: "36px", fontWeight: "600", textAlign: "center", lineHeight: "48px", color: "rgba(38,38,38,1)" }}>
-        Ralph Edwards
-      </div>
-      <div style={{ position: "absolute", left: "808px", top: "0px", width: "380px", height: "48px", fontFamily: "Inter, sans-serif", fontSize: "36px", fontWeight: "600", textAlign: "center", lineHeight: "48px", color: "rgba(38,38,38,1)" }}>
-        Robert Fox
-      </div>
-    </div>
-    <div style={{ position: "absolute", left: "112px", top: "3497px", width: "1216px", height: "132px" }}>
-      <div style={{ position: "absolute", left: "0px", top: "0px", width: "1216px", height: "88px", fontFamily: "Inter, sans-serif", fontSize: "64px", fontWeight: "600", textAlign: "center", lineHeight: "88px" }}>
-        Get in touch
-      </div>
-      <div style={{ position: "absolute", left: "0px", top: "100px", width: "1216px", height: "32px", fontFamily: "Inter, sans-serif", fontSize: "24px", fontWeight: "400", textAlign: "center", lineHeight: "32px", color: "rgba(93,95,97,1)" }}>
-        We’d love to hear from you. Please fill out this form.
-      </div>
-    </div>
-    <div style={{ position: "absolute", left: "470px", top: "3679px", width: "500px", height: "34px" }}>
-      <div style={{ position: "absolute", left: "0px", top: "0px", width: "343px", height: "24px", fontFamily: "Inter, sans-serif", fontSize: "16px", fontWeight: "400", textAlign: "left", lineHeight: "24px", color: "rgba(93,95,97,1)" }}>
-        Name
-      </div>
-      <div style={{ position: "absolute", left: "0px", top: "34px", width: "500px", height: "0px", border: "1px solid rgba(93,95,97,1)" }} />
-    </div>
-    <div style={{ position: "absolute", left: "470px", top: "3753px", width: "500px", height: "34px" }}>
-      <div style={{ position: "absolute", left: "0px", top: "0px", width: "343px", height: "24px", fontFamily: "Inter, sans-serif", fontSize: "16px", fontWeight: "400", textAlign: "left", lineHeight: "24px", color: "rgba(93,95,97,1)" }}>
-        Company Email
-      </div>
-      <div style={{ position: "absolute", left: "0px", top: "34px", width: "500px", height: "0px", border: "1px solid rgba(93,95,97,1)" }} />
-    </div>
-    <div style={{ position: "absolute", left: "470px", top: "3827px", width: "500px", height: "34px" }}>
-      <div style={{ position: "absolute", left: "0px", top: "0px", width: "343px", height: "24px", fontFamily: "Inter, sans-serif", fontSize: "16px", fontWeight: "400", textAlign: "left", lineHeight: "24px", color: "rgba(93,95,97,1)" }}>
-        Phone Number
-      </div>
-      <div style={{ position: "absolute", left: "0px", top: "34px", width: "500px", height: "0px", border: "1px solid rgba(93,95,97,1)" }} />
-    </div>
-    <div style={{ position: "absolute", left: "470px", top: "3901px", width: "500px", height: "34px" }}>
-      <div style={{ position: "absolute", left: "0px", top: "0px", width: "343px", height: "24px", fontFamily: "Inter, sans-serif", fontSize: "16px", fontWeight: "400", textAlign: "left", lineHeight: "24px", color: "rgba(93,95,97,1)" }}>
-        Title/Position
-      </div>
-      <div style={{ position: "absolute", left: "0px", top: "34px", width: "500px", height: "0px", border: "1px solid rgba(93,95,97,1)" }} />
-    </div>
-    <div style={{ position: "absolute", left: "470px", top: "3975px", width: "500px", height: "34px" }}>
-      <div style={{ position: "absolute", left: "0px", top: "0px", width: "343px", height: "24px", fontFamily: "Inter, sans-serif", fontSize: "16px", fontWeight: "400", textAlign: "left", lineHeight: "24px", color: "rgba(93,95,97,1)" }}>
-        Subject
-      </div>
-      <div style={{ position: "absolute", left: "0px", top: "34px", width: "500px", height: "0px", border: "1px solid rgba(93,95,97,1)" }} />
-    </div>
-    <div style={{ position: "absolute", left: "470px", top: "4061px", width: "500px", height: "56px", backgroundColor: "rgba(1,149,247,1)", borderRadius: "8px" }}>
-      <div style={{ position: "absolute", left: "16px", top: "8px", width: "468px", height: "40px", fontFamily: "Inter, sans-serif", fontSize: "16px", fontWeight: "600", textAlign: "center", lineHeight: "24px", color: "rgba(255,255,255,1)" }}>
-        Connect with us
-      </div>
-    </div>
-    <div style={{ position: "absolute", left: "0px", top: "4143px", width: "1440px", height: "352px", backgroundColor: "rgba(1,149,247,1)" }}>
-      <div style={{ position: "absolute", left: "112px", top: "96px", width: "1196.08349609375px", height: "128px" }}>
-        <div style={{ position: "absolute", left: "0px", top: "0px", width: "1196.08349609375px", height: "64px" }}>
-          <div style={{ position: "absolute", left: "0px", top: "0px", width: "362.6666564941406px", height: "48px", fontFamily: "Inter, sans-serif", fontSize: "36px", fontWeight: "600", textAlign: "left", lineHeight: "48px", color: "rgba(255,255,255,1)" }}>
-            Our Contact Details
+        <div style={{ position: "absolute", left: "328px", top: "26px", width: "448.5px", height: "18px" }}>
+          <div style={{ position: "absolute", left: "0px", top: "0px", width: "103px", height: "18px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "14px", fontWeight: "400", textAlign: "left", lineHeight: "18.19999885559082px", color: "rgba(156,156,156,1)" }}>
+            Case Studies
           </div>
-          <div style={{ position: "absolute", left: "426.66650390625px", top: "0px", width: "769.4169921875px", height: "64px" }}>
-            <div style={{ position: "absolute", left: "426.6669921875px", top: "0px", width: "342.75px", height: "32px", fontFamily: "Inter, sans-serif", fontSize: "24px", fontWeight: "600", textAlign: "left", lineHeight: "32px", color: "rgba(255,255,255,1)" }}>
-              Office
+          <div style={{ position: "absolute", left: "174px", top: "0px", width: "105px", height: "18px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "14px", fontWeight: "400", textAlign: "left", lineHeight: "18.19999885559082px", color: "rgba(156,156,156,1)" }}>
+            Testimonials
+          </div>
+          <div style={{ position: "absolute", left: "354.5px", top: "0px", width: "94px", height: "18px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "14px", fontWeight: "400", textAlign: "left", lineHeight: "18.19999885559082px", color: "rgba(156,156,156,1)" }}>
+            Recent work
+          </div>
+        </div>
+        <div style={{ position: "absolute", left: "853px", top: "26px", width: "103px", height: "18px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "14px", fontWeight: "400", textAlign: "left", lineHeight: "18.19999885559082px", color: "rgba(156,156,156,1)" }}>
+          Get In Touch
+        </div>
+      </div>
+      <div style={{ position: "absolute", left: "180px", top: "150px", width: "920px", height: "350px" }}>
+        <div style={{ position: "absolute", left: "0px", top: "61px", width: "492px", height: "237px" }}>
+          <div style={{ position: "absolute", left: "0px", top: "0px", width: "492px", height: "144px" }}>
+            <div style={{ position: "absolute", left: "0px", top: "0px", width: "426px", height: "52px", fontFamily: "Raleway, sans-serif", fontSize: "44px", fontWeight: "800", textAlign: "left", lineHeight: "51.656002044677734px", color: "rgba(255,255,255,1)" }}>
+              Your Name Here
             </div>
-            <div style={{ position: "absolute", left: "0px", top: "40px", width: "342.75px", height: "24px", fontFamily: "Inter, sans-serif", fontSize: "16px", fontWeight: "400", textAlign: "left", lineHeight: "24px", color: "rgba(255,255,255,1)" }}>
-              (702) 555-0122
-            </div>
-            <div style={{ position: "absolute", left: "426.6669921875px", top: "40px", width: "342.75px", height: "24px", fontFamily: "Inter, sans-serif", fontSize: "16px", fontWeight: "400", textAlign: "left", lineHeight: "24px", color: "rgba(255,255,255,1)" }}>
-              6391 Elgin St. Celina, Delaware 10299
+            <div style={{ position: "absolute", left: "0px", top: "72px", width: "492px", height: "72px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "14px", fontWeight: "400", textAlign: "left", lineHeight: "24px", color: "rgba(156,156,156,1)" }}>
+              Intro text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
             </div>
           </div>
-          <div style={{ position: "absolute", left: "426.66650390625px", top: "0px", width: "342.75px", height: "32px", fontFamily: "Inter, sans-serif", fontSize: "24px", fontWeight: "600", textAlign: "left", lineHeight: "32px", color: "rgba(255,255,255,1)" }}>
-            Telephone
+          <div style={{ position: "absolute", left: "0px", top: "174px", width: "334px", height: "63px", backgroundColor: "rgba(63,142,0,1)", borderRadius: "4px", border: "1px solid rgba(98,186,27,1)" }}>
+            <div style={{ position: "absolute", left: "64px", top: "21px", width: "164px", height: "21px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "16px", fontWeight: "700", textAlign: "left", lineHeight: "20.799999237060547px", color: "rgba(255,255,255,1)" }}>
+              Let’s get started
+            </div>
+            <img 
+              src="https://s3-alpha-sig.figma.com/img/a150/1ea8/19083567358de04754302b6ea423c5ed?Expires=1751846400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=VOqikB4q2cqnw8WSfczwxrusqH91q~1rl4iA1i~eymxCrF~KZIVoitUGAPBaLJb0z2nMCcOFdC7BP-0syye5kZCG-wvOkKJU0cY0yhrGEf7dJu2TkQGEX3iPjESnSCYwypkNYh~3ORzcauDYWwUg4C2zXXXPVjEf2BuVXSMJi6Gu1Dl-iNRRV3R-DtdrqHC4SbKWLCB32S0p7aDValg98~7xDRRRqH948btgmfwfsrgtYEAOgPK0KDoDoEzBc0vKsGXcQYWFOL-UiY029~XlkKdJfV5QlGfRIpFZrTj08KnYXtzOIfzEoTDhzDsjoM3-9P5lb-xp~mbQ2jGQoGPoFw__" 
+              alt="image 16"
+              style={{ position: "absolute", left: "238px", top: "21.5px", width: "32px", height: "20px" }}
+            />
           </div>
         </div>
-        <div style={{ position: "absolute", left: "0px", top: "68px", width: "1196.08349609375px", height: "60px" }}>
-          <div style={{ position: "absolute", left: "0px", top: "0px", width: "362.6666564941406px", height: "32px", fontFamily: "Inter, sans-serif", fontSize: "24px", fontWeight: "400", textAlign: "left", lineHeight: "32px", color: "rgba(255,255,255,1)" }}>
-            Let’s connect.
-          </div>
-          <div style={{ position: "absolute", left: "426.66650390625px", top: "28px", width: "342.75px", height: "32px", fontFamily: "Inter, sans-serif", fontSize: "24px", fontWeight: "600", textAlign: "left", lineHeight: "32px", color: "rgba(255,255,255,1)" }}>
-            WhatsApp
-          </div>
-          <div style={{ position: "absolute", left: "853.33349609375px", top: "28px", width: "342.75px", height: "32px", fontFamily: "Inter, sans-serif", fontSize: "24px", fontWeight: "600", textAlign: "left", lineHeight: "32px", color: "rgba(255,255,255,1)" }}>
-            Email
-          </div>
+        <div style={{ position: "absolute", left: "570px", top: "0px", width: "350px", height: "350px", backgroundColor: "rgba(255,255,255,1)", borderRadius: "22px" }}>
+          <img 
+            src="https://s3-alpha-sig.figma.com/img/f0af/ba6a/a10a604487ef43242c838874e50f3c73?Expires=1751846400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Poo92tDYUu~Z5xSEZFTCaMu2Pr6805~XDS61RcA2fzlXDWCKs1QjL6aftinNqyTxLKuQJyqUbPBZgsruWjOJVJwAVwNrD7CT9Hc9LXAciYvcTo3KOut8WHZkoY7DSfRW9fYl1juz7HZBbL4qxGuqzQFCkmKMDvPfDy1NOzvoaqm~OFGcMMFX3dkdCzEuMuOXbX2BSVtr8iIvxjTJkuSUO7s4hvbgK~o6F1JDNZ~OAvbsZOsslzbne9XfmylfQQIqA1rv0whtGxx8l8RoenxQaVnBDmZAZkmoknTWavy3nHJiETC8FNcFvwmU7JQd9wNWBTJCig-s1q3poxvYcBgsKg__" 
+            alt="image 11"
+            style={{ position: "absolute", left: "0px", top: "0px", width: "350px", height: "350px", borderRadius: "22px" }}
+          />
         </div>
       </div>
-      <div style={{ position: "absolute", left: "538.66650390625px", top: "232px", width: "769.4169921875px", height: "24px" }}>
-        <div style={{ position: "absolute", left: "0px", top: "0px", width: "342.75px", height: "24px", fontFamily: "Inter, sans-serif", fontSize: "16px", fontWeight: "400", textAlign: "left", lineHeight: "24px", color: "rgba(255,255,255,1)" }}>
-          +971 555 0114 321
+      <div style={{ position: "absolute", left: "180px", top: "557px", width: "920px", height: "98px" }}>
+        <div style={{ position: "absolute", left: "0px", top: "0px", width: "93px", height: "18px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "14px", fontWeight: "400", textAlign: "left", lineHeight: "18.19999885559082px", color: "rgba(255,255,255,1)" }}>
+          Worked with
         </div>
-        <div style={{ position: "absolute", left: "426.6669921875px", top: "0px", width: "342.75px", height: "24px", fontFamily: "Inter, sans-serif", fontSize: "16px", fontWeight: "400", textAlign: "left", lineHeight: "24px", color: "rgba(255,255,255,1)" }}>
-          mail@mail.com
+        <div style={{ position: "absolute", left: "0px", top: "38px", width: "920px", height: "60px", backgroundColor: "rgba(255,255,255,1)" }}>
+          <div style={{ position: "absolute", left: "0px", top: "0px", width: "160px", height: "60px", borderRadius: "6px" }}>
+            <div style={{ position: "absolute", left: "0px", top: "0px", width: "160px", height: "60px", borderRadius: "6px", border: "1px solid rgba(27,27,27,1)" }}>
+              <img 
+                src="https://s3-alpha-sig.figma.com/img/f7f4/390f/c7996044983c76b164243313f484e254?Expires=1751846400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=UHONc~9-keEt9yGcx9v1DTbqtHG2AI2Qloh9BVxBM9DLb-y7I5q-g-Cqhz7F3aTHllZAsoMOLdEg4fjL~2P5fm0-xAlUaEjORTcdMzaJIkN8IyET3diqVdlc9XnMIcqN4REEfUIRAjuKmyRwb49bSTJYRuiuUO-FmRcgn72QSC9bJbfci0I45mdWFf1feKtu5FECI3P78CW6b915i~79Qxxm3fQzw94~-z6YAh9pwBff1apaMEjQPB0o0-ayhMNXhaaoQEu9BBvc-KSgLKH1hoUpzHz3r9lOCGe9zUnAdvrn42fLqbnXAE8meqeA-A6GOqdJpk7XLKrjpwO-sCKNpA__" 
+                alt="image 24"
+                style={{ position: "absolute", left: "30px", top: "12px", width: "99.31034851074219px", height: "36px" }}
+              />
+            </div>
+          </div>
+          <div style={{ position: "absolute", left: "190px", top: "0px", width: "160px", height: "60px", borderRadius: "6px" }}>
+            <div style={{ position: "absolute", left: "0px", top: "0px", width: "160px", height: "60px", borderRadius: "6px", border: "1px solid rgba(27,27,27,1)" }}>
+              <img 
+                src="https://s3-alpha-sig.figma.com/img/28cd/5115/7c936aec549a1b7cecefd9151822ef30?Expires=1751846400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=tU2GkmBjeRrzdbcTkSn7F0kvcEyeuKB3EtJUowOpIFQXfnBqik-spPNCDlVgs1UYR~8cxiSl-emh9BmKHqIYirKxkK0c9p4Nyqx-hldSiEdI4PMqtIBGEwwRd7cy2KHsGdDN-jzJb~g8vXrhevf3B-HVPqJYm4tRr-UG1yVLeXsxoRCt7P7deYfIJlQAzJ~Ek~tK6a3LcQcUsQCHi9zEoPd93oMGvBLUo8L5pDbiBooj3RHtWwp-MQTSh2JgkgbehRoHYCp2XvFN3Ydc74pIVhxkSnPlyqH67~svZ4gW8PjDr4bjzUWBkUbHK~FC0VCeVI0RjEiV9EN50EoNMAYpcg__" 
+                alt="image 25"
+                style={{ position: "absolute", left: "30px", top: "8px", width: "99.21319580078125px", height: "45px" }}
+              />
+            </div>
+          </div>
+          <div style={{ position: "absolute", left: "380px", top: "0px", width: "160px", height: "60px", borderRadius: "6px" }}>
+            <div style={{ position: "absolute", left: "0px", top: "0px", width: "160px", height: "60px", borderRadius: "6px", border: "1px solid rgba(27,27,27,1)" }}>
+              <img 
+                src="https://s3-alpha-sig.figma.com/img/22a4/3846/d6b1360f06c89b6b4f7e1007cd61ec15?Expires=1751846400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=OXvl5VPxilHneI0b2sODwzTHzAYox9dwv9n97aJkQn2Bps70PYTcwCfOpGIGth793eDDGsDJm1xF4~ZYdT015KGccTyTCl9tkeji3-aV2b3J-bp-0WZlIxxHMuNSgFFVM-dSm5XDYTK7WCfrKZlPWbmNHHZ4C7YkrsmmoWsNW~PjdoW8FuwpxUswktjRNVomj0bnrpuvft5X40JSCPwQeJsPnNswgux2VKfrkw22Azcd4n0kd6uZLbRjLyfiFl7XB0os-xYEtbA0JgQnKijLxVsUdvg2cW0ews-YSXkBGih7u75bQdk5K8U7dzFyNfGTBAsYCqb4cn25qP7U6Ta49g__" 
+                alt="image 26"
+                style={{ position: "absolute", left: "19px", top: "10px", width: "122.90398406982422px", height: "41px" }}
+              />
+            </div>
+          </div>
+          <div style={{ position: "absolute", left: "570px", top: "0px", width: "160px", height: "60px", borderRadius: "6px" }}>
+            <div style={{ position: "absolute", left: "0px", top: "0px", width: "160px", height: "60px", borderRadius: "6px", border: "1px solid rgba(27,27,27,1)" }}>
+              <img 
+                src="https://s3-alpha-sig.figma.com/img/91d6/8b3d/85e12fb33217d411672239c68b08c18b?Expires=1751846400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=eyx4J-N14PMAoZetnrNcfDiUREMZv00yVrsbO3t1YI7iSvZPngcxUAq5QYW1zfj5S0QO3NzZzI0YTnZOMX0xHpQr23HQeSh3LodPvc8FPEMjk38KSxYBn-CbNl5eGxzCCbep3SO15r8Vd3BAXYS9IOPefT-znIpHNopZlHktmYlG8oMGNBzR5zjESSW1HLGPjpXcuWKB7CKElEMpOWe~FZZpdAKHLtunqsqfKfifnIk2Dt97GF5-kKyarId8O7Ek3rGcbX7gUlEA5pyXia8vtwZc2tS5ea2UJrAQXdUSZGQ7i1VLtTv2u9iXdw2d6wb0V14h5cxMNILki705A9~22Q__" 
+                alt="image 27"
+                style={{ position: "absolute", left: "30px", top: "13px", width: "99.16666412353516px", height: "35px" }}
+              />
+            </div>
+          </div>
+          <div style={{ position: "absolute", left: "760px", top: "0px", width: "160px", height: "60px", borderRadius: "6px" }}>
+            <div style={{ position: "absolute", left: "0px", top: "0px", width: "160px", height: "60px", borderRadius: "6px", border: "1px solid rgba(27,27,27,1)" }}>
+              <img 
+                src="https://s3-alpha-sig.figma.com/img/7fb2/2341/1bb854ad0b7103b1241e96f1a1cf1bf4?Expires=1751846400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Q0owuQj4Ha4xIn2Au80rgIIwqGtXmX6WFEVj1~FtnQFuY9zkBw~RdgGigE5AD-AxK8zLCgeNj65ymgpREoa0DTsgRB2fT3yHO1yMF8KwXM5lSwGylCsS4JG9pVN5ZShZYMswjBh02Wqn7xBtPSI7VHvbRPXJx2eDvhIhWbMKABS~sOI9oavpg--gUweMFp1NIu5QohYAxaMQnAvm9ChwWLbFyv3McZ-LCsQ69t5COO-EFJE57MEtxVU-2Y6HdzSBsF0HXeZ8dbFNZr21iDb83Hty652Bx9aZmgR-XhmdSBss9elTSW6itd~eQxhdmj8V9gYglhalqGRVlx5nyQO~-w__" 
+                alt="image 28"
+                style={{ position: "absolute", left: "36px", top: "12px", width: "87.42477416992188px", height: "37px" }}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div style={{ position: "absolute", left: "0px", top: "5203px", width: "1440px", height: "112px", backgroundColor: "rgba(242,245,247,1)" }}>
-      <div style={{ position: "absolute", left: "80px", top: "24px", width: "249.3369140625px", height: "64px" }}>
-        <div style={{ position: "absolute", left: "0px", top: "0px", width: "63.33698654174805px", height: "64px", backgroundColor: "rgba(255,255,255,1)" }} />
-        <div style={{ position: "absolute", left: "67.3369140625px", top: "8px", width: "182px", height: "48px", fontFamily: "Inter, sans-serif", fontSize: "36px", fontWeight: "600", textAlign: "center", lineHeight: "48px", color: "rgba(38,38,38,1)" }}>
-          ConsultUs
+    <div style={{ position: "absolute", left: "0px", top: "700px", width: "1280px", height: "804px", backgroundColor: "rgba(8,8,8,1)" }}>
+      <div style={{ position: "absolute", left: "104px", top: "72px", width: "570px", height: "88px" }}>
+        <div style={{ position: "absolute", left: "0px", top: "0px", width: "209px", height: "40px", fontFamily: "Raleway, sans-serif", fontSize: "34px", fontWeight: "800", textAlign: "center", lineHeight: "39.91600036621094px", color: "rgba(255,255,255,1)" }}>
+          Testimonials
+        </div>
+        <div style={{ position: "absolute", left: "0px", top: "40px", width: "570px", height: "48px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "14px", fontWeight: "400", textAlign: "left", lineHeight: "24px", color: "rgba(156,156,156,1)" }}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
         </div>
       </div>
-      <div style={{ position: "absolute", left: "1066px", top: "44px", width: "294px", height: "24px", fontFamily: "Inter, sans-serif", fontSize: "16px", fontWeight: "400", textAlign: "left", lineHeight: "24px", color: "rgba(93,95,97,1)" }}>
-        © 2021 Galang Arif. All rights reserved.
+      <div style={{ position: "absolute", left: "180px", top: "238px", width: "920px", height: "212px" }}>
+        <div style={{ position: "absolute", left: "0px", top: "0px", width: "445px", height: "212px", backgroundColor: "rgba(255,255,255,1)" }}>
+          <div style={{ position: "absolute", left: "0px", top: "0px", width: "445px", height: "212px", borderRadius: "6px", border: "1px solid rgba(255,255,255,1)" }}>
+            <div style={{ position: "absolute", left: "30px", top: "30px", width: "409px", height: "72px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "14px", fontWeight: "400", textAlign: "left", lineHeight: "24px", color: "rgba(156,156,156,1)" }}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            </div>
+            <div style={{ position: "absolute", left: "30px", top: "126px", width: "177px", height: "64px" }}>
+              <img 
+                src="https://s3-alpha-sig.figma.com/img/1ab7/5bd8/7e71da309c3224fbfeca31c148d42691?Expires=1751846400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=BDpAFyKBo9dD8mY1-S91qgiGtzttYOyqjUTe7P9MAFsn2uS9k7GLju1e0xCO-ZVV5C6w84y9WWshMBqtxV9DxAOCvv8U1p0XuDlNiIJAWhj4xRV9YaoxHCYA-UfdUjch5AHFP-~nhMX~SjBsjkbPvlDVE75N8N1AECSiWHufQmMDZ5WMow0miIswWMc9M9Mj157St-s25~2Q9mCHzVRa6H~-j~8LyKqvcIBAm1hzl5hB59ZO7nXuhLKAQvOPA5ZbE6xZJk3r8pENeiOK0-lDtSCr0tAWSWqpUxztnA~kyKmCJm-1pOVwD5LZzIEXbEG6Zc71JMRqglS8KVWwbMmlJA__" 
+                alt="image 29"
+                style={{ position: "absolute", left: "0px", top: "0px", width: "64px", height: "64px" }}
+              />
+              <div style={{ position: "absolute", left: "70px", top: "21px", width: "107px", height: "21px", fontFamily: "Raleway, sans-serif", fontSize: "18px", fontWeight: "700", textAlign: "center", lineHeight: "21.131999969482422px", color: "rgba(255,255,255,1)" }}>
+                Client Name
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style={{ position: "absolute", left: "475px", top: "0px", width: "445px", height: "212px", backgroundColor: "rgba(255,255,255,1)" }}>
+          <div style={{ position: "absolute", left: "0px", top: "0px", width: "445px", height: "212px", borderRadius: "6px", border: "1px solid rgba(255,255,255,1)" }}>
+            <div style={{ position: "absolute", left: "30px", top: "30px", width: "360px", height: "72px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "14px", fontWeight: "400", textAlign: "left", lineHeight: "24px", color: "rgba(156,156,156,1)" }}>
+              Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            </div>
+            <div style={{ position: "absolute", left: "30px", top: "126px", width: "177px", height: "64px" }}>
+              <img 
+                src="https://s3-alpha-sig.figma.com/img/1ab7/5bd8/7e71da309c3224fbfeca31c148d42691?Expires=1751846400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=BDpAFyKBo9dD8mY1-S91qgiGtzttYOyqjUTe7P9MAFsn2uS9k7GLju1e0xCO-ZVV5C6w84y9WWshMBqtxV9DxAOCvv8U1p0XuDlNiIJAWhj4xRV9YaoxHCYA-UfdUjch5AHFP-~nhMX~SjBsjkbPvlDVE75N8N1AECSiWHufQmMDZ5WMow0miIswWMc9M9Mj157St-s25~2Q9mCHzVRa6H~-j~8LyKqvcIBAm1hzl5hB59ZO7nXuhLKAQvOPA5ZbE6xZJk3r8pENeiOK0-lDtSCr0tAWSWqpUxztnA~kyKmCJm-1pOVwD5LZzIEXbEG6Zc71JMRqglS8KVWwbMmlJA__" 
+                alt="image 29"
+                style={{ position: "absolute", left: "0px", top: "0px", width: "64px", height: "64px" }}
+              />
+              <div style={{ position: "absolute", left: "70px", top: "21px", width: "107px", height: "21px", fontFamily: "Raleway, sans-serif", fontSize: "18px", fontWeight: "700", textAlign: "center", lineHeight: "21.131999969482422px", color: "rgba(255,255,255,1)" }}>
+                Client Name
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style={{ position: "absolute", left: "180px", top: "512px", width: "920px", height: "212px" }}>
+        <div style={{ position: "absolute", left: "0px", top: "0px", width: "445px", height: "212px", backgroundColor: "rgba(255,255,255,1)" }}>
+          <div style={{ position: "absolute", left: "0px", top: "0px", width: "445px", height: "212px", borderRadius: "6px", border: "1px solid rgba(255,255,255,1)" }}>
+            <div style={{ position: "absolute", left: "30px", top: "30px", width: "409px", height: "72px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "14px", fontWeight: "400", textAlign: "left", lineHeight: "24px", color: "rgba(156,156,156,1)" }}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            </div>
+            <div style={{ position: "absolute", left: "30px", top: "126px", width: "177px", height: "64px" }}>
+              <img 
+                src="https://s3-alpha-sig.figma.com/img/1ab7/5bd8/7e71da309c3224fbfeca31c148d42691?Expires=1751846400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=BDpAFyKBo9dD8mY1-S91qgiGtzttYOyqjUTe7P9MAFsn2uS9k7GLju1e0xCO-ZVV5C6w84y9WWshMBqtxV9DxAOCvv8U1p0XuDlNiIJAWhj4xRV9YaoxHCYA-UfdUjch5AHFP-~nhMX~SjBsjkbPvlDVE75N8N1AECSiWHufQmMDZ5WMow0miIswWMc9M9Mj157St-s25~2Q9mCHzVRa6H~-j~8LyKqvcIBAm1hzl5hB59ZO7nXuhLKAQvOPA5ZbE6xZJk3r8pENeiOK0-lDtSCr0tAWSWqpUxztnA~kyKmCJm-1pOVwD5LZzIEXbEG6Zc71JMRqglS8KVWwbMmlJA__" 
+                alt="image 29"
+                style={{ position: "absolute", left: "0px", top: "0px", width: "64px", height: "64px" }}
+              />
+              <div style={{ position: "absolute", left: "70px", top: "21px", width: "107px", height: "21px", fontFamily: "Raleway, sans-serif", fontSize: "18px", fontWeight: "700", textAlign: "center", lineHeight: "21.131999969482422px", color: "rgba(255,255,255,1)" }}>
+                Client Name
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style={{ position: "absolute", left: "475px", top: "0px", width: "445px", height: "212px", backgroundColor: "rgba(255,255,255,1)" }}>
+          <div style={{ position: "absolute", left: "0px", top: "0px", width: "445px", height: "212px", borderRadius: "6px", border: "1px solid rgba(255,255,255,1)" }}>
+            <div style={{ position: "absolute", left: "30px", top: "30px", width: "360px", height: "72px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "14px", fontWeight: "400", textAlign: "left", lineHeight: "24px", color: "rgba(156,156,156,1)" }}>
+              Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            </div>
+            <div style={{ position: "absolute", left: "30px", top: "126px", width: "177px", height: "64px" }}>
+              <img 
+                src="https://s3-alpha-sig.figma.com/img/1ab7/5bd8/7e71da309c3224fbfeca31c148d42691?Expires=1751846400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=BDpAFyKBo9dD8mY1-S91qgiGtzttYOyqjUTe7P9MAFsn2uS9k7GLju1e0xCO-ZVV5C6w84y9WWshMBqtxV9DxAOCvv8U1p0XuDlNiIJAWhj4xRV9YaoxHCYA-UfdUjch5AHFP-~nhMX~SjBsjkbPvlDVE75N8N1AECSiWHufQmMDZ5WMow0miIswWMc9M9Mj157St-s25~2Q9mCHzVRa6H~-j~8LyKqvcIBAm1hzl5hB59ZO7nXuhLKAQvOPA5ZbE6xZJk3r8pENeiOK0-lDtSCr0tAWSWqpUxztnA~kyKmCJm-1pOVwD5LZzIEXbEG6Zc71JMRqglS8KVWwbMmlJA__" 
+                alt="image 29"
+                style={{ position: "absolute", left: "0px", top: "0px", width: "64px", height: "64px" }}
+              />
+              <div style={{ position: "absolute", left: "70px", top: "21px", width: "107px", height: "21px", fontFamily: "Raleway, sans-serif", fontSize: "18px", fontWeight: "700", textAlign: "center", lineHeight: "21.131999969482422px", color: "rgba(255,255,255,1)" }}>
+                Client Name
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style={{ position: "absolute", left: "0px", top: "1504px", width: "1280px", height: "804px", backgroundColor: "rgba(8,8,8,1)" }}>
+      <div style={{ position: "absolute", left: "107px", top: "40px", width: "570px", height: "719px" }}>
+        <div style={{ position: "absolute", left: "0px", top: "0px", width: "570px", height: "112px" }}>
+          <div style={{ position: "absolute", left: "0px", top: "0px", width: "211px", height: "40px", fontFamily: "Raleway, sans-serif", fontSize: "34px", fontWeight: "800", textAlign: "center", lineHeight: "39.91600036621094px", color: "rgba(255,255,255,1)" }}>
+            Recent Work
+          </div>
+          <div style={{ position: "absolute", left: "0px", top: "40px", width: "570px", height: "72px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "14px", fontWeight: "400", textAlign: "left", lineHeight: "24px", color: "rgba(156,156,156,1)" }}>
+            Solving user & business problems since last 15+ years. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+          </div>
+        </div>
+        <div style={{ position: "absolute", left: "0px", top: "187px", width: "533px", height: "532px", backgroundColor: "rgba(255,255,255,1)", borderRadius: "15px" }}>
+          <img 
+            src="https://s3-alpha-sig.figma.com/img/d362/e04b/51178b43a75aa2c3d3a576ab438a80f0?Expires=1751846400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=iN8VbLN8hmwQFiNlkJyuaMNKQrM5zmXdiCaDl3UpxvbnK~oR~3ozVKQ~Mj5XoqCv7IDmXL84qeh8zTfe3lCnUdHxS1AMvDTzsMTtjauStZyKs-kegTU-qj4qCKbPQdJEnSJoYcFsP~ExC3319tFmOFNrmjfMYmuy~8K9-bA9JACXUMDD~ORFW99IYodznROHCO89SdDWkZsdzc95Qw3qILzmxApxf1EJ74CjU8cWdtIMCKfSwZe~ajpJrtJeDs-DArVJiC3HQ8pSFuZOfXUbVK~9cDKo3mZtIngNkPAC5XsHi0Lg-stKiMWRGIYPgllV7FBECXZpKMjXpiM4lMT8Zg__" 
+            alt="image 9"
+            style={{ position: "absolute", left: "44px", top: "19px", width: "445px", height: "300px" }}
+          />
+          <div style={{ position: "absolute", left: "44px", top: "19px", width: "445px", height: "300px" }}>
+            <img 
+              src="https://s3-alpha-sig.figma.com/img/d362/e04b/51178b43a75aa2c3d3a576ab438a80f0?Expires=1751846400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=iN8VbLN8hmwQFiNlkJyuaMNKQrM5zmXdiCaDl3UpxvbnK~oR~3ozVKQ~Mj5XoqCv7IDmXL84qeh8zTfe3lCnUdHxS1AMvDTzsMTtjauStZyKs-kegTU-qj4qCKbPQdJEnSJoYcFsP~ExC3319tFmOFNrmjfMYmuy~8K9-bA9JACXUMDD~ORFW99IYodznROHCO89SdDWkZsdzc95Qw3qILzmxApxf1EJ74CjU8cWdtIMCKfSwZe~ajpJrtJeDs-DArVJiC3HQ8pSFuZOfXUbVK~9cDKo3mZtIngNkPAC5XsHi0Lg-stKiMWRGIYPgllV7FBECXZpKMjXpiM4lMT8Zg__" 
+              alt="Rectangle 11"
+              style={{ position: "absolute", left: "0px", top: "0px", width: "445px", height: "300px", borderRadius: "6px" }}
+            />
+          </div>
+          <div style={{ position: "absolute", left: "44px", top: "359px", width: "421px", height: "154px" }}>
+            <div style={{ position: "absolute", left: "0px", top: "0px", width: "192px", height: "28px", fontFamily: "Raleway, sans-serif", fontSize: "24px", fontWeight: "800", textAlign: "left", lineHeight: "28.176000595092773px", color: "rgba(0,0,0,1)" }}>
+              Work name here
+            </div>
+            <div style={{ position: "absolute", left: "0px", top: "48px", width: "421px", height: "48px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "14px", fontWeight: "400", textAlign: "left", lineHeight: "24px", color: "rgba(156,156,156,1)" }}>
+              Labore et dolore magna aliqua. sed do eiusmod tempor incididunt ut labore et dolore magna.
+            </div>
+            <div style={{ position: "absolute", left: "0px", top: "116px", width: "166px", height: "38px", backgroundColor: "rgba(63,142,0,1)", borderRadius: "4px", border: "1px solid rgba(98,186,27,1)" }}>
+              <div style={{ position: "absolute", left: "24px", top: "11px", width: "76px", height: "18px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "14px", fontWeight: "700", textAlign: "left", lineHeight: "18.19999885559082px", color: "rgba(255,255,255,1)" }}>
+                Know more
+              </div>
+              <img 
+                src="https://s3-alpha-sig.figma.com/img/a150/1ea8/19083567358de04754302b6ea423c5ed?Expires=1751846400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=VOqikB4q2cqnw8WSfczwxrusqH91q~1rl4iA1i~eymxCrF~KZIVoitUGAPBaLJb0z2nMCcOFdC7BP-0syye5kZCG-wvOkKJU0cY0yhrGEf7dJu2TkQGEX3iPjESnSCYwypkNYh~3ORzcauDYWwUg4C2zXXXPVjEf2BuVXSMJi6Gu1Dl-iNRRV3R-DtdrqHC4SbKWLCB32S0p7aDValg98~7xDRRRqH948btgmfwfsrgtYEAOgPK0KDoDoEzBc0vKsGXcQYWFOL-UiY029~XlkKdJfV5QlGfRIpFZrTj08KnYXtzOIfzEoTDhzDsjoM3-9P5lb-xp~mbQ2jGQoGPoFw__" 
+                alt="image 16"
+                style={{ position: "absolute", left: "110px", top: "10px", width: "32px", height: "20px" }}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style={{ position: "absolute", left: "682px", top: "228px", width: "533px", height: "532px", backgroundColor: "rgba(255,255,255,1)", borderRadius: "15px" }}>
+        <img 
+          src="https://s3-alpha-sig.figma.com/img/d362/e04b/51178b43a75aa2c3d3a576ab438a80f0?Expires=1751846400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=iN8VbLN8hmwQFiNlkJyuaMNKQrM5zmXdiCaDl3UpxvbnK~oR~3ozVKQ~Mj5XoqCv7IDmXL84qeh8zTfe3lCnUdHxS1AMvDTzsMTtjauStZyKs-kegTU-qj4qCKbPQdJEnSJoYcFsP~ExC3319tFmOFNrmjfMYmuy~8K9-bA9JACXUMDD~ORFW99IYodznROHCO89SdDWkZsdzc95Qw3qILzmxApxf1EJ74CjU8cWdtIMCKfSwZe~ajpJrtJeDs-DArVJiC3HQ8pSFuZOfXUbVK~9cDKo3mZtIngNkPAC5XsHi0Lg-stKiMWRGIYPgllV7FBECXZpKMjXpiM4lMT8Zg__" 
+          alt="image 9"
+          style={{ position: "absolute", left: "44px", top: "19px", width: "445px", height: "300px" }}
+        />
+        <div style={{ position: "absolute", left: "44px", top: "19px", width: "445px", height: "300px" }}>
+          <img 
+            src="https://s3-alpha-sig.figma.com/img/d362/e04b/51178b43a75aa2c3d3a576ab438a80f0?Expires=1751846400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=iN8VbLN8hmwQFiNlkJyuaMNKQrM5zmXdiCaDl3UpxvbnK~oR~3ozVKQ~Mj5XoqCv7IDmXL84qeh8zTfe3lCnUdHxS1AMvDTzsMTtjauStZyKs-kegTU-qj4qCKbPQdJEnSJoYcFsP~ExC3319tFmOFNrmjfMYmuy~8K9-bA9JACXUMDD~ORFW99IYodznROHCO89SdDWkZsdzc95Qw3qILzmxApxf1EJ74CjU8cWdtIMCKfSwZe~ajpJrtJeDs-DArVJiC3HQ8pSFuZOfXUbVK~9cDKo3mZtIngNkPAC5XsHi0Lg-stKiMWRGIYPgllV7FBECXZpKMjXpiM4lMT8Zg__" 
+            alt="Rectangle 11"
+            style={{ position: "absolute", left: "0px", top: "0px", width: "445px", height: "300px", borderRadius: "6px" }}
+          />
+        </div>
+        <div style={{ position: "absolute", left: "44px", top: "359px", width: "421px", height: "154px" }}>
+          <div style={{ position: "absolute", left: "0px", top: "0px", width: "192px", height: "28px", fontFamily: "Raleway, sans-serif", fontSize: "24px", fontWeight: "800", textAlign: "left", lineHeight: "28.176000595092773px", color: "rgba(0,0,0,1)" }}>
+            Work name here
+          </div>
+          <div style={{ position: "absolute", left: "0px", top: "48px", width: "421px", height: "48px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "14px", fontWeight: "400", textAlign: "left", lineHeight: "24px", color: "rgba(156,156,156,1)" }}>
+            Labore et dolore magna aliqua. sed do eiusmod tempor incididunt ut labore et dolore magna.
+          </div>
+          <div style={{ position: "absolute", left: "0px", top: "116px", width: "166px", height: "38px", backgroundColor: "rgba(63,142,0,1)", borderRadius: "4px", border: "1px solid rgba(98,186,27,1)" }}>
+            <div style={{ position: "absolute", left: "24px", top: "11px", width: "76px", height: "18px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "14px", fontWeight: "700", textAlign: "left", lineHeight: "18.19999885559082px", color: "rgba(255,255,255,1)" }}>
+              Know more
+            </div>
+            <img 
+              src="https://s3-alpha-sig.figma.com/img/a150/1ea8/19083567358de04754302b6ea423c5ed?Expires=1751846400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=VOqikB4q2cqnw8WSfczwxrusqH91q~1rl4iA1i~eymxCrF~KZIVoitUGAPBaLJb0z2nMCcOFdC7BP-0syye5kZCG-wvOkKJU0cY0yhrGEf7dJu2TkQGEX3iPjESnSCYwypkNYh~3ORzcauDYWwUg4C2zXXXPVjEf2BuVXSMJi6Gu1Dl-iNRRV3R-DtdrqHC4SbKWLCB32S0p7aDValg98~7xDRRRqH948btgmfwfsrgtYEAOgPK0KDoDoEzBc0vKsGXcQYWFOL-UiY029~XlkKdJfV5QlGfRIpFZrTj08KnYXtzOIfzEoTDhzDsjoM3-9P5lb-xp~mbQ2jGQoGPoFw__" 
+              alt="image 16"
+              style={{ position: "absolute", left: "110px", top: "10px", width: "32px", height: "20px" }}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style={{ position: "absolute", left: "0px", top: "2308px", width: "1280px", height: "672px", backgroundColor: "rgba(8,8,8,1)" }}>
+      <div style={{ position: "absolute", left: "537px", top: "81px", width: "206px", height: "40px", fontFamily: "Raleway, sans-serif", fontSize: "34px", fontWeight: "800", textAlign: "center", lineHeight: "39.91600036621094px", color: "rgba(255,255,255,1)" }}>
+        Get In Touch
+      </div>
+      <div style={{ position: "absolute", left: "355px", top: "131px", width: "570px", height: "48px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "14px", fontWeight: "400", textAlign: "center", lineHeight: "24px", color: "rgba(156,156,156,1)" }}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+      </div>
+      <div style={{ position: "absolute", left: "465px", top: "219px", width: "350px", height: "61px" }}>
+        <div style={{ position: "absolute", left: "0px", top: "0px", width: "36px", height: "16px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "12px", fontWeight: "600", textAlign: "left", lineHeight: "15.59999942779541px", color: "rgba(255,255,255,1)" }}>
+          Email
+        </div>
+        <div style={{ position: "absolute", left: "0px", top: "21px", width: "350px", height: "40px", backgroundColor: "rgba(248,248,248,1)", borderRadius: "4px", border: "1px solid rgba(216,216,216,1)" }}>
+          <div style={{ position: "absolute", left: "12px", top: "2px", width: "326px", height: "36px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "12px", fontWeight: "400", textAlign: "left", lineHeight: "21px", color: "rgba(117,117,117,1)" }}>
+            Please enter your email
+          </div>
+        </div>
+      </div>
+      <div style={{ position: "absolute", left: "465px", top: "300px", width: "350px", height: "61px" }}>
+        <div style={{ position: "absolute", left: "0px", top: "0px", width: "44px", height: "16px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "12px", fontWeight: "600", textAlign: "left", lineHeight: "15.59999942779541px", color: "rgba(255,255,255,1)" }}>
+          Mobile
+        </div>
+        <div style={{ position: "absolute", left: "0px", top: "21px", width: "350px", height: "40px", backgroundColor: "rgba(248,248,248,1)", borderRadius: "4px", border: "1px solid rgba(216,216,216,1)" }}>
+          <div style={{ position: "absolute", left: "12px", top: "2px", width: "326px", height: "36px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "12px", fontWeight: "400", textAlign: "left", lineHeight: "21px", color: "rgba(117,117,117,1)" }}>
+            Enter mobile
+          </div>
+        </div>
+      </div>
+      <div style={{ position: "absolute", left: "465px", top: "381px", width: "350px", height: "57px" }}>
+        <div style={{ position: "absolute", left: "0px", top: "0px", width: "51px", height: "16px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "12px", fontWeight: "600", textAlign: "left", lineHeight: "15.59999942779541px", color: "rgba(255,255,255,1)" }}>
+          Message
+        </div>
+        <div style={{ position: "absolute", left: "0px", top: "21px", width: "350px", height: "36px", backgroundColor: "rgba(248,248,248,1)", borderRadius: "4px", border: "1px solid rgba(216,216,216,1)" }}>
+          <div style={{ position: "absolute", left: "12px", top: "0px", width: "326px", height: "36px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "12px", fontWeight: "400", textAlign: "left", lineHeight: "21px", color: "rgba(117,117,117,1)" }}>
+            Enter your message
+          </div>
+        </div>
+      </div>
+      <div style={{ position: "absolute", left: "465px", top: "467px", width: "350px", height: "50px", backgroundColor: "rgba(63,142,0,1)", borderRadius: "4px", border: "1px solid rgba(98,186,27,1)" }}>
+        <div style={{ position: "absolute", left: "141.553466796875px", top: "16px", width: "51px", height: "18px", fontFamily: "IBM Plex Mono, sans-serif", fontSize: "14px", fontWeight: "700", textAlign: "left", lineHeight: "18.19999885559082px", color: "rgba(255,255,255,1)" }}>
+          Submit
+        </div>
+        <div style={{ position: "absolute", left: "202.553466796875px", top: "20px", width: "5.892857074737549px", height: "10px", backgroundColor: "rgba(255,255,255,1)" }} />
       </div>
     </div>
   </div>

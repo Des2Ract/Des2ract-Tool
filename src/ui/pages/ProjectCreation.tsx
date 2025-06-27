@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { ProjectData, ProjectEntry, ReactFile } from "@/lib/types";
+import { ReactFile } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LogViewer } from '@patternfly/react-log-viewer';
 import axios from "axios";
@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import LoadingEffect from "../components/Loading";
+
 
 const windowsPathRegex = /^[a-zA-Z]:\\(?:[^<>:"/\\|?*\r\n]+\\)*[^<>:"/\\|?*\r\n]*$/;
 
@@ -50,6 +51,8 @@ export default function ProjectCreationPage({
     onContinue: (projectName: string) => void
 }) {
 
+    console.log(designTree);
+    
     const [ phase, setPhase ] = useState<Phase>("Generating Code");
     const [ loading, setIsLoading ] = useState<boolean>(false);
     const [ generatedFiles, setGeneratedFiles ] = useState<ReactFile[]>([]);
@@ -209,7 +212,6 @@ export default function ProjectCreationPage({
                         <div className="h-full">
                             <LogViewer
                                 hasLineNumbers
-
                                 data={logs.join('\n')}
                                 theme="light"
                                 height="100%"
@@ -221,9 +223,9 @@ export default function ProjectCreationPage({
             }
 
             {   phase == "Installing Dependencies" &&
-                <Alert className="w-3/4 flex " variant={'default'}>
-                    <Avatar>
-                        <AvatarImage src={logoPath ?? ""} className="w-32 h-32" />
+                <Alert className="w-3/4 flex items-center" variant={'default'}>
+                    <Avatar className="w-12 h-12">
+                        <AvatarImage src={logoPath ?? ""} className="w-full h-full" />
                         <AvatarFallback>D2R</AvatarFallback>
                     </Avatar>
                     <div className="flex flex-col ">
@@ -236,9 +238,9 @@ export default function ProjectCreationPage({
             }
 
             {   phase == "Finished" &&
-                <Alert className="w-3/4 flex " variant={'default'}>
-                    <Avatar>
-                        <AvatarImage src={logoPath ?? ""} className="w-32 h-32" />
+                <Alert className="w-3/4 flex items-center" variant={'default'}>
+                    <Avatar className="w-12 h-12">
+                        <AvatarImage src={logoPath ?? ""} className="w-full h-full" />
                         <AvatarFallback>D2R</AvatarFallback>
                     </Avatar>
                     <div className="flex flex-col w-full">
@@ -248,7 +250,7 @@ export default function ProjectCreationPage({
                         </AlertDescription>
                     </div>
 
-                    <Button onClick={() => { onContinue(form.getValues("projectName")) }} className="bg-transparent hover:bg-accent/20">
+                    <Button onClick={() => { onContinue(form.getValues("projectName")) }} className="bg-accent cursor-pointer hover:bg-accent/80">
                         <ArrowRight />
                     </Button>
                 </Alert>

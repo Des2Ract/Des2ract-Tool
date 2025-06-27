@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import NextPageButton from "../components/NextButton";
 import LoadingEffect from "../components/Loading";
+import { COLORS } from "@/lib/consts";
 
 interface PreBuilderProps {
     figmaUrl: string;

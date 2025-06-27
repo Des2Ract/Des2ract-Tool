@@ -2,7 +2,6 @@ import { FC, useState,useEffect, useMemo } from 'react';
 import Dashboard from './pages/Dashboard';
 import AddProject from './pages/AddProject';
 import axios from 'axios';
-// import '@patternfly/react-core/dist/styles/base.css';
 import './index.css';
 import './App.css'
 import RedundantGroupsView from './pages/PreBuilder';
