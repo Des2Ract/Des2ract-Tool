@@ -8,6 +8,7 @@ import { ArrowLeft, Check, Home, Pen } from "lucide-react";
 import { useMemo, useRef, useState } from "react";
 import CommonSidebarHeader from "./common-header";
 import CommonSidebarFooter from "./common-footer";
+import { Button } from "@/components/ui/button";
 
 
 interface SemanticAssingerSidebarProps {
@@ -38,7 +39,7 @@ export default function SemanticAssignerSidebar({
 
     const convertTree = (node: TreeBuilderNode, depth: number = 0, index: number = 0) : TreeDataItem => ({
         id: node.node.id,
-        name: `${node.name === "TREE BUILDER GROUP" ? "Group" : node.name.slice(0, 15)} [${node.tag}]` ,
+        name: `${node.name === "TREE BUILDER GROUP" ? "Group" : node.name.slice(0, 15)} [${node.ground_truth ?? ""}]` ,
         children: node.node.type === "TEXT" ? [ { id: node.name + depth + index + "TEXT", name: node.node.characters.slice(0, 15) } ] 
         : node.children.map((child: TreeBuilderNode, index: number) => convertTree(child, depth + 1, index)),
         onClick: () => { changeSelection(node.node.depth, node) }
@@ -76,6 +77,10 @@ export default function SemanticAssignerSidebar({
                             aria-label="Toggle italic">
                                 <Pen /> Edit Class
                             </Toggle>
+
+                            <Button onClick={() => {console.log(projectTree);}}> 
+                                <Check /> Save
+                            </Button>
                     </SidebarMenu>
 
                     <CommonSidebarFooter 

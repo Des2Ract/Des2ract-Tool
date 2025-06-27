@@ -11,7 +11,7 @@ import SemanticAssignerView from './pages/SematicAssigner';
 import SemanticGrouperView from './pages/SemanticGrouper';
 import ProjectView from './pages/ProjectView';
 import ProjectCreationPage from './pages/ProjectCreation';
-import { TestTree } from '@/lib/test-tree';
+import { TEST_TREE, TestTree } from '@/lib/test-tree';
 
 const formatFigmaName = (url:string) => {
   if (!url) return "Untitled Project";

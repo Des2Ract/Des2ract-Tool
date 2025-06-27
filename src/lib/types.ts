@@ -29,6 +29,7 @@ export type TreeBuilderNode = {
   base_tag: string;
   name: string;
   node: Node;
+  ground_truth?: string;
   children: TreeBuilderNode[];
   type: string;
   tag: string;

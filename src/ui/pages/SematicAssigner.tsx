@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/select"
 import NextPageButton from "../components/NextButton";
 import LoadingEffect from "../components/Loading";
+import { Input } from "@/components/ui/input";
 
 interface PreBuilderProps {
     pageTree: any;
@@ -92,7 +93,7 @@ export default function SemanticAssignerView({
     
     const updateTagInJson = (node: any, id: string, newTag: string): TreeBuilderNode => {
         if (node.node.id === id) {
-            return { ...node, tag: newTag };
+            return { ...node, ground_truth: `group_${newTag}` };
         } else if (node && typeof node === 'object' && 'children' in node) {
             return { ...node, children: node.children.map((child: any) => updateTagInJson(child, id, newTag)) };
         } else {
@@ -148,26 +149,7 @@ export default function SemanticAssignerView({
                         <SheetTitle>Modify <span className="text-accent">{focusElement?.name}</span></SheetTitle>
                         <SheetDescription>
                             <div className="flex justify-center gap-5 items-center">
-                                <Select>
-                                <SelectTrigger className="w-[180px]" disabled>
-                                    <SelectValue placeholder={focusElement?.tag}/>
-                                </SelectTrigger>
-                                </Select>
-
-                                <ArrowRight />
-
-                                <Select value={selectedTag} onValueChange={setSelectedTag}>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder={focusElement?.tag}/>
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                    <SelectLabel>Tag</SelectLabel>
-                                    { TAG_LIST.map((tag) => <SelectItem key={tag} value={tag}>{tag}</SelectItem>) }
-                                    </SelectGroup>
-                                </SelectContent>
-                                </Select>
-
+                                <Input value={selectedTag} onChange={(e) => setSelectedTag(e.target.value)}/>
                             </div>
                         </SheetDescription>
                         </SheetHeader>
