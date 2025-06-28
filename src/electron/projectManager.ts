@@ -31,7 +31,6 @@ export function initProjectManager(mainWindow: BrowserWindow) {
   if (!fs.existsSync(PROJECTS_DIR)) {
     fs.mkdirSync(PROJECTS_DIR, { recursive: true });
   }
-  console.log(`Projects directory: ${PROJECTS_DIR}`);
 
   function readAllFilesRecursively(
     dir: string,
@@ -42,7 +41,7 @@ export function initProjectManager(mainWindow: BrowserWindow) {
     const entries = fs.readdirSync(dir, { withFileTypes: true });
 
     for (const entry of entries) {
-      if (entry.name === "node_modules") continue; // Exclude node_modules
+      if (entry.name === "node_modules" || entry.name.startsWith(".")) continue; // Exclude node_modules
 
       const fullPath = path.join(dir, entry.name);
       const relativePath = path
@@ -115,14 +114,13 @@ export function initProjectManager(mainWindow: BrowserWindow) {
     return project;
   });
 
-  ipcMain.handle("run-project", async (_, { projectId, command }) => {
-    const projectPath = path.join(PROJECTS_DIR, projectId);
+  ipcMain.handle("run-project", async (_, projectId: string, projectPath: string) => {
 
     if (activeProcesses[projectId]) {
       activeProcesses[projectId].kill();
     }
 
-    const proc = spawn(command, {
+    const proc = spawn('npm i && npm run dev -- --port 3000', {
       cwd: projectPath,
       shell: true,
       stdio: ["pipe", "pipe", "pipe"],
@@ -152,12 +150,10 @@ export function initProjectManager(mainWindow: BrowserWindow) {
   ipcMain.handle("stop-project", (_, projectId) => {
     const proc = activeProcesses[projectId];
     if (proc) {
-      console.log(`Stopping process for project ${projectId}`);
       treeKill(proc.pid as number, "SIGTERM");
       delete activeProcesses[projectId];
       return true;
     }
-    console.log(`No process found for project ${projectId}`);
     return false;
   });
 
@@ -173,6 +169,11 @@ export function initProjectManager(mainWindow: BrowserWindow) {
     const files = readAllFilesRecursively(projectPath, projectPath);
 
     return { files, projectPath };
+  });
+  
+  ipcMain.handle("read-project-files", (_, { projectPath }) => {
+    const files = readAllFilesRecursively(projectPath, projectPath);
+    return files;
   });
 
   ipcMain.handle("get-assets-path", () => {

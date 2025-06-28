@@ -8,8 +8,8 @@ contextBridge.exposeInMainWorld("electron", {
     files: Record<string, string | Buffer>
   ): Promise<Project> => ipcRenderer.invoke("save-project", { project, files }),
 
-  runProject: (projectId: string, command: string): Promise<void> =>
-    ipcRenderer.invoke("run-project", { projectId, command }),
+  runProject: (projectId: string, projectPath: string): Promise<void> =>
+    ipcRenderer.invoke("run-project", projectId, projectPath),
 
   stopProject: (projectId: string): Promise<boolean> =>
     ipcRenderer.invoke("stop-project", projectId),
@@ -20,6 +20,11 @@ contextBridge.exposeInMainWorld("electron", {
       zipData: Buffer.from(zipData),
     }),
 
+  readAllFilesRecursively: (projectPath: string): Promise<string> =>
+    ipcRenderer.invoke("read-project-files", {
+      projectPath,
+    }),
+
   onProjectOutput: (
     callback: (data: { projectId: string; data: string }) => void
   ): void => {
@@ -27,4 +32,10 @@ contextBridge.exposeInMainWorld("electron", {
   },
 
   getAssetsPath: (): Promise<string> => ipcRenderer.invoke("get-assets-path"),
+  
+  selectFolder: (): Promise<string> => ipcRenderer.invoke('select-folder'),
+  createReactApp: (folderPath: string, projectName: string, generatedFiles: any[]) => ipcRenderer.send('run-command', folderPath, projectName, generatedFiles),
+  onOutput: (callback: (data: string) => void) => ipcRenderer.on('command-output', (_, data) => callback(data)),
+  onError: (callback: (data: string) => void) => ipcRenderer.on('command-error', (_, data) => callback(data)),
+  onClose: (callback: (data: string) => void) => ipcRenderer.on('command-close', (_, code) => callback(code)),
 });

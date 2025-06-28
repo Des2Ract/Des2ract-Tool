@@ -1,10 +1,7 @@
 import { TreeDataItem, TreeView } from "@/components/tree-view";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarSeparator } from "@/components/ui/sidebar";
-import { GroupItem, TreeBuilderNode } from "@/lib/types";
-import { ArrowLeft, Check, Home } from "lucide-react";
-import { useMemo, useRef, useState } from "react";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroupContent, SidebarMenu, SidebarMenuItem, SidebarProvider } from "@/components/ui/sidebar";
+import { TreeBuilderNode } from "@/lib/types";
+import { useMemo, useState } from "react";
 import CommonSidebarFooter from "./common-footer";
 import CommonSidebarHeader from "./common-header";
 
@@ -37,7 +34,7 @@ export default function TreeBuilderResultsSidebar({
 
     const convertTree = (node: TreeBuilderNode, depth: number = 0, index: number = 0) : TreeDataItem => ({
         id: `${node.name}/${depth}/${index}`,
-        name: node.name === "TREE BUILDER GROUP" ? "Group" : (`${node.name.slice(0, 15)} [${node.node.type}]`),
+        name: `${node.name == "TREE BUILDER GROUP" ? "Group" : node.name.slice(0, 15)} [ ${(node.node.layout ?? "") == "ROWS" ? "Rows" : "Columns"} ]`,
         children: node.node.type === "TEXT" ? [ { id: node.name + depth + index + "TEXT", name: node.node.characters.slice(0, 15) } ] 
         : node.children.map((child, index) => convertTree(child, depth + 1, index)),
         onClick: () => { changeSelection(`${node.name}/${depth}/${index}`, { x: node.node.x, y: node.node.y, w: node.node.width, h: node.node.height }) }

@@ -4,6 +4,13 @@ export type ProjectData = {
   json2?: { data: Record<string, { tag?: string }> };
 }
 
+export interface Project {
+  id: string;
+  name: string;
+  figmaLink: string;
+  files: { [key: string]: string };
+}
+
 export type Node = {
   x: number;
   y: number;
@@ -11,6 +18,7 @@ export type Node = {
   type: string;
   tag: string;
   height: number;
+  layout?: string;
   id: string;
   depth: string;
   characters: string;
@@ -52,4 +60,15 @@ export type ApiResponse = {
 
 export const Messages = {
     "redundantGroups": "Redundant Groups Message",
+}
+
+export type ReactFile = {
+    name: string;
+    content: string;
+    path: string;
+}
+
+export type ProjectEntry = {
+    "name": string;
+    "path": string;
 }

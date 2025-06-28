@@ -62,7 +62,8 @@ export default function SemanticGrouperView({
             setIsLoading(true);
             try {
                 const response = await axios.post(
-                    "https://kareemalaa1-semantic-grouper.hf.space/api",
+                    "https://kareemalaa1-semantic-grouper.hf.space/api/enhanced",
+                    // "https://kareemalaa1-semantic-grouper.hf.space/api",
                     { data: pageTree },
                     {
                         headers: { "Content-Type": "application/json" },
@@ -87,7 +88,7 @@ export default function SemanticGrouperView({
     }, [json]);
 
     const updateGroupInJson = (node: any, ids: string[], newGroupId: string | null): any => {
-        if ( ids.includes(node.node_id.toLocaleLowerCase()) ) {
+        if ( "node_id" in node && ids.includes(node.node_id.toLocaleLowerCase()) ) {
             return { ...node, node_id: newGroupId };
         } else if (node && typeof node === 'object' && 'children' in node) {
             return { ...node, children: node.children.map((child: any) => updateGroupInJson(child, ids, newGroupId)) };

@@ -119,6 +119,7 @@ const FigmaEmbed: FC<FigmaEmbedProps> = ({ figmaLink }) => {
   return (
     <div className='w-full h-full'>
       <iframe
+        className='w-full h-full'
         style={{
           border: 'none',
           borderRadius: '12px',

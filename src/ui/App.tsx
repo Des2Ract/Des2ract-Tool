@@ -1,4 +1,4 @@
-import { FC, useState,useEffect } from 'react';
+import { FC, useState,useEffect, useMemo } from 'react';
 import Dashboard from './pages/Dashboard';
 import AddProject from './pages/AddProject';
 import axios from 'axios';
@@ -10,6 +10,8 @@ import TreebuilderResultsView from './pages/TreeBuilder';
 import SemanticAssignerView from './pages/SematicAssigner';
 import SemanticGrouperView from './pages/SemanticGrouper';
 import ProjectView from './pages/ProjectView';
+import ProjectCreationPage from './pages/ProjectCreation';
+import { TestTree } from '@/lib/test-tree';
 
 const formatFigmaName = (url:string) => {
   if (!url) return "Untitled Project";
@@ -38,13 +40,13 @@ const screenNames = [
   'Tree Builder',
   'Semantic Assigner',
   'Semantic Grouper',
+  'Code Generation',
   'Project View'
 ]
 
 const App: FC = () => {
   const [currentView, setCurrentView] = useState<number>(0);
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [projectUrl, setProjectUrl] = useState<string>('');
+  const [projectUrl, setProjectUrl] = useState<string>("https://www.figma.com/design/QpKlDdGRvg7DRe9NvXQRtZ/PUBLIC-SPACE--Community-?node-id=18-7&t=mYWUvhwY38oOJ5cO-0");
   
   const [keepGroups, setKeepGroups] = useState<GroupItem[]>([]); 
   const [designSvg, setDesignSvg] = useState<string>('');
@@ -52,18 +54,12 @@ const App: FC = () => {
   const [semanticTree, setSemanticTree] = useState<any>(null);
   const [groupedTree, setGroupedTree] = useState<any>(null);
   
-  const [currentFiles, setCurrentFiles] = useState<{ [key: string]: string }>({});
-  const [currentActiveFile, setCurrentActiveFile] = useState<string | null>(null);
-  const [currentProjectId, setCurrentProjectId] = useState<string | null>(null);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [currentProjectName, setCurrentProjectName] = useState<string | null>(null);
 
-  const handleProjectSelect = (projectId: string) => {
-    const project = projects.find(p => p.id === projectId);
-    if (project) {
-      setCurrentProjectId(project.id);
-      setCurrentFiles(project.files);
-      setCurrentActiveFile(Object.keys(project.files)[0] || null);
-      setCurrentView( screenNames.indexOf('Project View') );
-    }
+  const handleProjectSelect = (projectName: string) => {
+    setCurrentProjectName(projectName);
+    setCurrentView( screenNames.indexOf('Project View') );
   };
 
   const handleReturnSelect = () => {
@@ -72,64 +68,49 @@ const App: FC = () => {
 
   useEffect(() => {
     const loadProjects = async () => {
-      const projects = await window.electron.getProjects();
+      const projects = JSON.parse(localStorage.getItem('projects') ?? "[]");
       setProjects(projects);
     };
     loadProjects();
   }, []);
 
   const handleContinueFromSemanticGrouper = async (finalTree: any) => {
+    setGroupedTree(finalTree);
+    setCurrentView( screenNames.indexOf('Code Generation') );
+  }
+
+  const handleGenerateProjectFinished = async (projectName: string) => {
     try {
-      // Call API to get zip file
-      const response = await axios.post('http://localhost:5000/download', { finalTree }, {
-        responseType: 'arraybuffer'
-      });
-      
-      // Create project
-      const projectId = `project-${Date.now()}`;
-      const projectName = formatFigmaName(projectUrl as string);
-      
-      // Unzip the project
-      const unzipResult = await window.electron.unzipProject(projectId, response.data);
+      const updatedProjects : Project[] = JSON.parse( localStorage.getItem('projects') ?? "[]" );
 
-      const files = unzipResult.files;
-      const projectPath = unzipResult.path;
-
-      // Save project metadata
-      const project : Project= {
-        id: projectId,
-        name: projectName,
-        files: files as any,
-        figmaLink: projectUrl || '',
-        path: projectPath
-      };
-      
-      await window.electron.saveProject(project, {});
-
-      // Update state
-      setProjects(prev => [...prev, project]);
-      
-      setCurrentProjectId(project.id);
-      
-      setCurrentFiles(project.files);
-      
-      setCurrentActiveFile(Object.keys(project.files)[0] || null);
-
+      setProjects(updatedProjects);
+      setCurrentProjectName(projectName);
       setCurrentView(screenNames.indexOf('Project View'));
-      
+
     } catch (error) {
       console.error('Error getting final files:', error);
     }
   };
 
+  const activeProject = useMemo(()=> {
+    const projects : Project[] = JSON.parse(localStorage.getItem('projects') ?? "[]");
+    return projects.find((project) => project.name === currentProjectName);
+  }, [currentProjectName])
+
   return (
     <main className='h-screen flex bg-white '>   
       {currentView === 0 && (
-        <Dashboard projects={projects} 
+        <Dashboard 
+          projects={projects} 
           onAddProject={() => { 
             setCurrentView( screenNames.indexOf('Add Project') ); 
             setProjectUrl(''); 
           }} 
+          onDeleteProject={(projectId) => {
+            const updatedProjects = projects.filter((project) => project.id !== projectId);
+            localStorage.setItem('projects', JSON.stringify(updatedProjects));
+            setProjects(updatedProjects);
+          }}
           onProjectSelect={handleProjectSelect} 
         />
       )}
@@ -199,14 +180,17 @@ const App: FC = () => {
       )}
      
       {currentView === 6 && (
+        <ProjectCreationPage
+          designUrl={projectUrl}
+          designTree={groupedTree} 
+          figmaLink={projectUrl}
+          onContinue={handleGenerateProjectFinished}
+        />
+      )}
+     
+      {currentView === 7 && (
         <ProjectView
-          projects={projects}
-          setProjects={setProjects}
-          currentProjectId={currentProjectId || ''}
-          files={currentFiles}
-          activeFile={currentActiveFile}
-          setActiveFile={setCurrentActiveFile}
-          setFiles={setCurrentFiles}
+          project={activeProject!}
           onReturnSelect={handleReturnSelect}
         />
       )}

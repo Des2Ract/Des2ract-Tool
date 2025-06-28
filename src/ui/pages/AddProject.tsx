@@ -39,7 +39,7 @@ const AddProject: FC<AddProjectProps> = ({ onContinue, onBackPressed, onHomePres
           onChange={(e) => setFigmaLink(e.target.value)}
         />
 
-        <FigmaEmbed figmaLink={figmaLink} />
+        <FigmaEmbed figmaLink={figmaLink}  />
       </section>
 
       <NextPageButton 

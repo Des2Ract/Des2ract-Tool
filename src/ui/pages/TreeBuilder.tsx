@@ -3,11 +3,12 @@ import CanvasViewer from "../components/CanvasViewer";
 import { useEffect, useMemo, useState } from "react";
 import { extractKeyId } from "@/lib/utils";
 import axios from "axios";
-import TreeBuilderResultsProps from "../components/sidebars/tree-builder-preview-sidebar";
+import TreeBuilderResultsSidebar from "../components/sidebars/tree-builder-preview-sidebar";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import NextPageButton from "../components/NextButton";
 import LoadingEffect from "../components/Loading";
+import { COLORS } from "@/lib/consts";
 
 interface PreBuilderProps {
     figmaUrl: string;
@@ -34,13 +35,11 @@ export default function TreebuilderResultsView({
         const fetchData = async () => {
             setIsLoading(true);
             try {
-              
                 const params = extractKeyId(figmaUrl);
                 if (params == null) return;
 
                 const checkedIds = keepGroups.filter(g => g.checked).map(g => g.id);
                 const { fileKey, nodeId } = params;
-
                 const response = await axios.post('https://moadelezz2-des2ract.hf.space/api/tree-builder', 
                     {"fileKey":fileKey,"nodeId":nodeId,"keep":checkedIds}, 
                     {headers: { 'Content-Type': 'application/json' },}
@@ -59,7 +58,7 @@ export default function TreebuilderResultsView({
 
     return (   
         <main className='w-full h-screen flex justify-start bg-white '>   
-            <TreeBuilderResultsProps 
+            <TreeBuilderResultsSidebar 
                 projectTree={json} 
                 setFocusElement={setFocusElement} 
                 onBackClicked={onBackPressed}

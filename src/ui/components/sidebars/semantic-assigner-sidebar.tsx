@@ -37,14 +37,14 @@ export default function SemanticAssignerSidebar({
     }
 
     const convertTree = (node: TreeBuilderNode, depth: number = 0, index: number = 0) : TreeDataItem => ({
-        id: node.node.depth,
+        id: node.node.depth == "0" ? "-1" : node.node.depth,
         name: `${node.name === "TREE BUILDER GROUP" ? "Group" : node.name.slice(0, 15)} [${node.tag}]` ,
         children: node.node.type === "TEXT" ? [ { id: node.name + depth + index + "TEXT", name: node.node.characters.slice(0, 15) } ] 
         : node.children.map((child: TreeBuilderNode, index: number) => convertTree(child, depth + 1, index)),
         onClick: () => { changeSelection(node.node.depth, node) }
     });
 
-    const viewData = useMemo(() => projectTree ? convertTree(projectTree) : null, [projectTree, selected, editMode]);
+    const viewData = useMemo(() => projectTree ? convertTree(projectTree) : null, [projectTree, selected, editMode]);    
 
     return (
         <div className="mr-5 w-fit">

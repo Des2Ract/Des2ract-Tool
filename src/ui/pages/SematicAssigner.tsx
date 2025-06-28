@@ -72,12 +72,12 @@ export default function SemanticAssignerView({
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
-            try {  
+            try {                  
                 const response = await axios.post('https://AOZ2025-Semantic-Assigner.hf.space/predict', pageTree, {
                     headers: { 'Content-Type': 'application/json' },
                 })
                 
-                setJson(response.data);
+                setJson(response.data);                
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -87,18 +87,19 @@ export default function SemanticAssignerView({
         fetchData();
     }, [pageTree]);    
     
-    const updateTagInJson = (node: any, id: string, newTag: string): TreeBuilderNode => {
-        if (node.node.depth === id) {
+    const updateTagInJson = (node: any, depth: string, newTag: string): TreeBuilderNode => {
+        const nodeDepth = node.node.depth == 0 ? "-1" : node.node.depth;
+        if (nodeDepth === depth) {
             return { ...node, tag: newTag };
         } else if (node && typeof node === 'object' && 'children' in node) {
-            return { ...node, children: node.children.map((child: any) => updateTagInJson(child, id, newTag)) };
+            return { ...node, children: node.children.map((child: any) => updateTagInJson(child, depth, newTag)) };
         } else {
             return { ...node };
         }
     }
 
-    const changeTagInJson = (id: string, tag: string) => {
-        setJson((prev: any) => updateTagInJson(prev, id, tag) );
+    const changeTagInJson = (depth: string, tag: string) => {
+        setJson((prev: any) => updateTagInJson(prev, depth, tag) );
     }
 
     const editFocusGroup = () => {
