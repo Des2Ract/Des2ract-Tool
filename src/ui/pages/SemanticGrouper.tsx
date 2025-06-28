@@ -88,7 +88,7 @@ export default function SemanticGrouperView({
     }, [json]);
 
     const updateGroupInJson = (node: any, ids: string[], newGroupId: string | null): any => {
-        if ( "node_id" in node && ids.includes(node.node_id.toLocaleLowerCase()) ) {
+        if ( "node_id" in node && node.node_id && ids.includes(node.node_id.toLocaleLowerCase()) ) {
             return { ...node, node_id: newGroupId };
         } else if (node && typeof node === 'object' && 'children' in node) {
             return { ...node, children: node.children.map((child: any) => updateGroupInJson(child, ids, newGroupId)) };
